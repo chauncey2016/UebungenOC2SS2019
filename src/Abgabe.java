@@ -26,7 +26,8 @@ public class Abgabe {
 		
 		System.out.println();
 		System.out.println(minDistance);
-		System.out.println(Arrays.toString(path));
+		System.out.println(Arrays.toString(minP));
+		System.out.println(Arrays.toString(decode(minP, n)));
 		
 		//System.out.println("hallo :"+dst(2, 3, matrix, n));
 	}
@@ -51,6 +52,27 @@ public class Abgabe {
 					return false;
 		return true;
 	} 
+	
+	private static int[] decode(int[] path, int n) {
+		boolean[] visited = new boolean[n];
+		int counter = 0;
+		int[] path2 = new int[path.length];
+		for(int i=0; i<path.length; i++) {
+			int nr_2 = path[i];
+			counter = 0;
+			for(int j=0; j<n-1; j++) {
+				if(visited[j] == true)
+					continue;
+				if(counter == nr_2) {
+					path2[i] = j;
+					visited[j] = true;
+					break;
+				}
+				counter++;
+			}
+		}
+		return path2;
+	}
 	
 	private static int length(int[] path, int n, int[] matrix) {
 		boolean[] visited = new boolean[n];
@@ -113,8 +135,14 @@ public class Abgabe {
 	
 	private static void print(int[] arr, int n) {
 		int i = 0;
+		System.out.println();
+		System.out.print("\t");
+		for(int j=0; j<n; j++) {
+			System.out.print(j+".\t");
+		}
 		for(int x=0; x<n; x++) {
 			System.out.println();
+			System.out.print(x+".\t");
 			for(int y=0; y<n; y++) {
 				System.out.print(arr[i++]+"\t");
 			}
