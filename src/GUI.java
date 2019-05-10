@@ -36,6 +36,7 @@ public class GUI extends JComponent{
 		for(int i=0; i < a.length; i++) {
 			path[i] = points[ a[i] ];
 		}
+		repaint();
 	}
 	
 	private Point[] makeRandomPoints() {
