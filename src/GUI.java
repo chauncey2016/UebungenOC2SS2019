@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 public class GUI extends JComponent{
 	JTextField out;
 	public static void main(String[] args) {
-		JFrame f = new JFrame();
+		JFrame f = new JFrame("Problem des Handelsreisenden");
 		f.setSize(700, 480);
 		GUI canvas = new GUI();
 		f.add(canvas);
