@@ -79,7 +79,7 @@ public class Abgabe {
 		
 		int nr_1 = path[0];
 		int counter = 0;
-		for(int j=0; j<n-1; j++) {
+		for(int j=0; j<n; j++) {
 			if(counter == nr_1) {
 				nr_1 = j;
 				visited[j] = true;
@@ -94,7 +94,7 @@ public class Abgabe {
 		for(int i=1; i<path.length; i++) {
 			nr_2 = path[i];
 			counter = 0;
-			for(int j=0; j<n-1; j++) {
+			for(int j=0; j<n; j++) {
 				if(visited[j] == true)
 					continue;
 				if(counter == nr_2) {
@@ -109,7 +109,7 @@ public class Abgabe {
 			//System.out.println("distanz von " + nr_1 + " nach " + nr_2 + " insgesamt " + distance);
 			nr_1 = nr_2;
 		}
-		for(int j=0; j<n-1; j++) {
+		for(int j=0; j<n; j++) {
 			if(visited[j] != true)
 				nr_2 = j;
 		}
