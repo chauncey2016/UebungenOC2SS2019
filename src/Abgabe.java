@@ -35,13 +35,18 @@ public class Abgabe {
 	}
 	
 	public static int[] solve(int n, int[] matrix) {
+		long t0 = System.currentTimeMillis();
 		int[] path = new int[n-1];
 		int[] minP = new int[n-1];
+		
+		int[] path2;
 		
 		int minDistance = Integer.MAX_VALUE;
 		
 		while( hasNext(path) ) {
-			int d = length(path, n, matrix);
+			path2 = decode(path, n);
+			int d = length2(path2, n, matrix);
+			//int d = length(path, n, matrix); //decode and calc in one function bad
 			if(d < minDistance && d != 0){
 				minDistance = d;
 				for(int i=0; i<path.length; i++)
@@ -49,6 +54,12 @@ public class Abgabe {
 			}
 			path = next(path);
 		}
+		
+		long t1 = System.currentTimeMillis();
+		
+		System.out.println((t1-t0)+"ms for calculation with "+n+" Elements");
+		
+		System.out.println("Length: " + length(minP, n, matrix));
 		
 		return decode(minP, n);
 	}
@@ -96,6 +107,16 @@ public class Abgabe {
 			if(visited[j] != true)
 				path2[n-1] = j;
 		return path2;
+	}
+	
+	private static int length2(int[] path, int n, int[] matrix) {
+		int d = 0;
+		for(int i=1; i<n; i++) {
+			int a = path[i-1];
+			int b = path[i];
+			d += matrix[a*n + b];
+		}
+		return d;
 	}
 	
 	private static int length(int[] path, int n, int[] matrix) {
@@ -157,7 +178,7 @@ public class Abgabe {
 		return arr;
 	}
 	
-	private static void print(int[] arr, int n) {
+	public static void print(int[] arr, int n) {
 		int i = 0;
 		System.out.println();
 		System.out.print("\t");
@@ -171,6 +192,7 @@ public class Abgabe {
 				System.out.print(arr[i++]+"\t");
 			}
 		}
+		System.out.println();
 	}
 
 }

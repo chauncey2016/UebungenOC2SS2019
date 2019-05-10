@@ -1,41 +1,133 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class GUI extends JComponent{
+	JTextField out;
 	public static void main(String[] args) {
 		JFrame f = new JFrame();
-		f.setSize(500, 500);
+		f.setSize(700, 480);
 		GUI canvas = new GUI();
 		f.add(canvas);
-		//JPanel panel = new JPanel();
+		JPanel panel = new JPanel();
+		
+		JButton button1 = new JButton("reset");
+		button1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				canvas.init();
+			}
+		});
+		panel.add(button1);
+		
+		JButton button = new JButton("random/ circle");
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				canvas.useRandom = !canvas.useRandom;
+				canvas.init();
+			}
+		});
+		panel.add(button);
+		
+		JLabel label_n = new JLabel("number");
+		panel.add(label_n);
+		JTextField field2 = new JTextField();
+		field2.setText("9");
+		field2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int n = Integer.parseInt(field2.getText());
+				if(n > canvas.names.length) {
+					JOptionPane.showMessageDialog(null, "Max n = "+canvas.names.length+ " out of bounds");
+				}else {
+					canvas.n = n;
+					canvas.init();
+				}
+				
+			}
+		});
+		field2.setPreferredSize(new Dimension(40, 20));
+		panel.add(field2);
+		
+		JLabel label_input = new JLabel("Degree");
+		panel.add(label_input);
+		JTextField field = new JTextField();
+		field.setText("70");
+		field.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				canvas.degree = Integer.parseInt(field.getText());
+				canvas.init();
+			}
+		});
+		field.setPreferredSize(new Dimension(40, 20));
+		panel.add(field);
+		
+		canvas.out = new JTextField();
+		canvas.out.setEditable(false);
+		canvas.out.setPreferredSize(new Dimension(300, 20));
+		panel.add(canvas.out);
+		
+		f.add(panel, BorderLayout.SOUTH);
 		f.setVisible(true);
 		canvas.init();
 	}
 
 	String[] names = {"Brisbane", "Venice", "Prague", "London", 
 			"Edinburgh", "Paris", "Florence", "Rome", 
-			"Sydney", "Seville", "Rio de Janeiro"};
+			"Sydney", "Seville", "Rio de Janeiro", "Berlin", "Washington"};
 	
 	int n = -1;
+	int degree = 70;
 	Point[] points = null;
 	Point[] path = null;
+	boolean useRandom = false;
 	
 	public GUI() {
-		
+		n = 9; //max 11 oder 10
 	}
 	
 	public void init() {
-		n = 9; //max 11 oder 10
-		points = makeRandomPoints();
-		points = makCirclePoints(70);
-		int[] a = Abgabe.solve(n, makeMatrix());
+		
+		if(useRandom)
+			points = makeRandomPoints();
+		else
+			points = makCirclePoints(degree);
+		int[] matrix =  makeMatrix();
+		Abgabe.print(matrix, n);
+		long t0 = System.currentTimeMillis();
+		
+		int[] a = Abgabe.solve(n,matrix);
+		
+		long t1 = System.currentTimeMillis();
+		if( (t1-t0) < 100)
+			out.setText((t1-t0)+"ms for calculation with "+n+" Elements");
+		else
+			out.setText((t1-t0)/1000+"sec for calculation with "+n+" Elements");
+		
 		path = new Point[n];
-		for(int i=0; i < a.length; i++) {
+		
+		for(int i=0; i < n; i++)
 			path[i] = points[ a[i] ];
-		}
+		
+		System.out.println();
+		for(int i=0; i < n; i++)
+			System.out.print(names[a[i]]+"\t");
+		System.out.println();
+		for(int i=0; i < n; i++)
+			System.out.print(a[i]+"\t");
 		repaint();
 	}
 	
@@ -101,8 +193,8 @@ public class GUI extends JComponent{
 		if(path == null)
 			return;
 		for(int i=1; i<path.length; i++) {
-			Point p1 = points[i];
-			Point p2 = points[i-1];
+			Point p1 = path[i-1];
+			Point p2 = path[i];
 			g.drawLine(p1.x, p1.y, p2.x, p2.y);
 		}
 	}
