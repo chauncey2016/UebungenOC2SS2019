@@ -68,7 +68,7 @@ public class GUI extends JComponent{
 		JLabel label_input = new JLabel("Degree");
 		panel.add(label_input);
 		JTextField field = new JTextField();
-		field.setText("70");
+		field.setText("40");
 		field.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -94,7 +94,7 @@ public class GUI extends JComponent{
 			"Sydney", "Seville", "Rio de Janeiro", "Berlin", "Washington"};
 	
 	int n = -1;
-	int degree = 70;
+	int degree = 40;
 	Point[] points = null;
 	Point[] path = null;
 	boolean useRandom = false;
