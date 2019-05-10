@@ -1,7 +1,11 @@
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -173,29 +177,37 @@ public class GUI extends JComponent{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		Graphics2D g2 = (Graphics2D)g;
+		 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
 		if(n == -1)
 			return;
+		g.setColor(Color.GRAY);
 		for(int i=0; i<points.length; i++) {
 			for(int j=i+1; j<points.length; j++) {
 				Point p1 = points[i];
 				Point p2 = points[j];
 				if(p1 == p2)
 					continue;
-				//g.drawLine(p1.x, p1.y, p2.x, p2.y);
+				g.drawLine(p1.x, p1.y, p2.x, p2.y);
 			}
 		}
+		if(path == null)
+			return;
+		g.setColor(Color.RED);
+		g2.setStroke(new BasicStroke(3));
+		for(int i=1; i<path.length; i++) {
+			Point p1 = path[i-1];
+			Point p2 = path[i];
+			g.drawLine(p1.x, p1.y, p2.x, p2.y);
+		}
+		g2.setStroke(new BasicStroke(1));
+		g.setColor(Color.BLACK);
 		int r = 5;
 		for(int i=0; i<points.length; i++) {
 			Point p = points[i];
 			g.fillOval(p.x-r/2, p.y-r/2, r, r);
 			g.drawString(names[i], p.x, p.y-r/2);
-		}
-		if(path == null)
-			return;
-		for(int i=1; i<path.length; i++) {
-			Point p1 = path[i-1];
-			Point p2 = path[i];
-			g.drawLine(p1.x, p1.y, p2.x, p2.y);
 		}
 	}
 	
