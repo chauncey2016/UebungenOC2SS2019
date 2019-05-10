@@ -112,7 +112,7 @@ public class GUI extends JComponent{
 		int[] a = Abgabe.solve(n,matrix);
 		
 		long t1 = System.currentTimeMillis();
-		if( (t1-t0) < 100)
+		if( (t1-t0) < 1000)
 			out.setText((t1-t0)+"ms for calculation with "+n+" Elements");
 		else
 			out.setText((t1-t0)/1000+"sec for calculation with "+n+" Elements");
