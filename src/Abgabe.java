@@ -12,6 +12,7 @@ public class Abgabe {
 		
 		int minDistance = Integer.MAX_VALUE;
 		
+		long t0 = System.currentTimeMillis();
 		while( hasNext(path) ) {
 			int d = length(path, n, matrix);
 			//System.out.println(Arrays.toString(path));
@@ -23,11 +24,12 @@ public class Abgabe {
 			}
 			path = next(path);
 		}
-		
+		long t1 = System.currentTimeMillis();
 		System.out.println();
 		System.out.println(minDistance);
 		System.out.println(Arrays.toString(minP));
 		System.out.println(Arrays.toString(decode(minP, n)));
+		System.out.println((t1-t0)+"ms for calculation with "+n+" Elements");
 		
 		//System.out.println("hallo :"+dst(2, 3, matrix, n));
 	}
