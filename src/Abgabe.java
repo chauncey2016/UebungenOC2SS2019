@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class Abgabe {
 
 	public static void main(String[] args) {
-		int n = 5;
+		int n = 11;
 		int[] matrix = makePaths(n);
 		print(matrix, n);
 		
@@ -31,6 +31,25 @@ public class Abgabe {
 		
 		//System.out.println("hallo :"+dst(2, 3, matrix, n));
 	}
+	
+	public static int[] solve(int n, int[] matrix) {
+		int[] path = new int[n-1];
+		int[] minP = new int[n-1];
+		
+		int minDistance = Integer.MAX_VALUE;
+		
+		while( hasNext(path) ) {
+			int d = length(path, n, matrix);
+			if(d < minDistance && d != 0){
+				minDistance = d;
+				for(int i=0; i<path.length; i++)
+					minP[i] = path[i];
+			}
+			path = next(path);
+		}
+		
+		return decode(minP, n);
+	}
 
 	private static int[] next(int[] path) {
 		for(int i=path.length-1; i>=0; i--) {
@@ -56,11 +75,11 @@ public class Abgabe {
 	private static int[] decode(int[] path, int n) {
 		boolean[] visited = new boolean[n];
 		int counter = 0;
-		int[] path2 = new int[path.length];
-		for(int i=0; i<path.length; i++) {
+		int[] path2 = new int[n];
+		for(int i=0; i<n-1; i++) {
 			int nr_2 = path[i];
 			counter = 0;
-			for(int j=0; j<n-1; j++) {
+			for(int j=0; j<n; j++) {
 				if(visited[j] == true)
 					continue;
 				if(counter == nr_2) {
@@ -71,6 +90,9 @@ public class Abgabe {
 				counter++;
 			}
 		}
+		for(int j=0; j<n; j++)
+			if(visited[j] != true)
+				path2[n-1] = j;
 		return path2;
 	}
 	
