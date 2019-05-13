@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 
 public class GUI extends JComponent{
 	JTextField out;
+	long seed = 9L;
 	public static void main(String[] args) {
 		JFrame f = new JFrame("Problem des Handelsreisenden");
 		f.setSize(700, 480);
@@ -44,6 +46,21 @@ public class GUI extends JComponent{
 			}
 		});
 		panel.add(button);
+		
+		JLabel label_seed = new JLabel("Random Seed");
+		panel.add(label_seed);
+		JTextField field3 = new JTextField();
+		field3.setText("9");
+		field3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				long seed = Long.parseLong(field3.getText());
+				canvas.seed = seed;
+				canvas.init();
+			}
+		});
+		field3.setPreferredSize(new Dimension(40, 20));
+		panel.add(field3);
 		
 		JLabel label_n = new JLabel("number");
 		panel.add(label_n);
@@ -115,11 +132,13 @@ public class GUI extends JComponent{
 		
 		int[] a = Abgabe.solve(n,matrix);
 		
+		int length = Abgabe.length2(a, n, matrix);
+		
 		long t1 = System.currentTimeMillis();
 		if( (t1-t0) < 1000)
-			out.setText((t1-t0)+"ms for calculation with "+n+" Elements");
+			out.setText((t1-t0)+"ms for calc with "+n+" Elements "+length+" pixels");
 		else
-			out.setText((t1-t0)/1000+"sec for calculation with "+n+" Elements");
+			out.setText((t1-t0)/1000+"sec for calc with "+n+" Elements"+length+" pixels");
 		
 		path = new Point[n];
 		
@@ -136,11 +155,14 @@ public class GUI extends JComponent{
 	}
 	
 	private Point[] makeRandomPoints() {
+		Random random = new Random(seed);
 		Point[] points = new Point[n];
 		int off = 20;
 		for(int i=0; i<n; i++) {
-			int x = (int) (Math.random()*(getWidth() -2*off)) + off;
-			int y = (int) (Math.random()*(getHeight() -2*off)) + off;
+			//int x = (int) (Math.random()*(getWidth() -2*off)) + off;
+			//int y = (int) (Math.random()*(getHeight() -2*off)) + off;
+			int x = random.nextInt(getWidth() - 2* off) + off;
+			int y = random.nextInt(getHeight() - 2* off) + off;
 			points[i] = new Point(x, y);
 		}
 		System.out.println(getWidth());
