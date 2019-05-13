@@ -1,7 +1,10 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Abgabe {
 
+	static long seed = 9;
+	
 	public static void main(String[] args) {
 		int n = 11;
 		int[] matrix = makePaths(n);
@@ -109,7 +112,7 @@ public class Abgabe {
 		return path2;
 	}
 	
-	private static int length2(int[] path, int n, int[] matrix) {
+	public static int length2(int[] path, int n, int[] matrix) {
 		int d = 0;
 		for(int i=1; i<n; i++) {
 			int a = path[i-1];
@@ -167,12 +170,14 @@ public class Abgabe {
 	}
 
 	private static int[] makePaths(int n) {
+		Random random = new Random(seed);
 		int length = (n*(n-1))/2;
 		int[] arr = new int[n*n];
 		for(int i=0; i<n*n; i++) {
 			if(arr[i] != 0 || i%n == i/n)
 				continue;
-			arr[ i ] = (int)(Math.random()*100) + 1;
+			//arr[ i ] = (int)(Math.random()*100) + 1
+			arr[ i ] = random.nextInt() % 100 + 1;
 			arr[ (i%n)*n + i/n ] = arr[i];
 		}
 		return arr;
