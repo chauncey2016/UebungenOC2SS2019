@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /oc-master/src/
+cd src/
 
 javac GUI.java
 java GUI
