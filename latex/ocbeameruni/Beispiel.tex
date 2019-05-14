@@ -1,0 +1,69 @@
+\documentclass{ocbeameruni}
+
+
+\setdefaultlanguage[babelshorthands=true]{german}
+
+
+% Nur benötigt für die Beispiel-Listings!
+\usepackage{listings}
+\lstloadlanguages{[LaTeX]TeX}
+\lstset{%
+  basicstyle=\small \ttfamily,
+  breaklines=true,
+}
+
+\newcommand{\R}{\mathbb{R}}
+
+
+\title{Organic Computing 2}
+\subtitle{Lösungsvorschlag Blatt01}
+\date{\today}
+\author{Lukas Huhn \and Qiang Chang \and Victor Gerling \and Daniel Bossert}
+\institute{%
+  Universität Augsburg\\
+  Institut für Informatik\\
+  Lehrstuhl für Organic Computing
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{frame}{Gliederung}
+  \setbeamertemplate{section in toc}[sections numbered]
+  \tableofcontents
+\end{frame}
+
+
+\section{Generator für TSP-Probleme}
+
+\begin{frame}{Generator für TSP-Problem}
+    \begin{itemize}
+    \item Abstandsmatrix $M \in {\R}^{u^{2}}$
+    \item Kosten $v,w \in [0,u]$
+    \item $dst(v,w) = M[v*u+w] = M[w*u+v] \Rightarrow$ 
+    doppelt so groß wie nötig
+    \end{itemize}
+\end{frame}
+
+
+\section{Evaluation}
+
+\begin{frame}{Evaluation}
+    \begin{itemize}
+        \item Intel® Core™ i5-5257U CPU @ 2.70GHz × 4, 8GB Ram
+        \item n=10: 470ms 
+        \item n=15: 44min running, then stopped
+        \item problem is NP-hard
+    \end{itemize}
+\end{frame}
+
+\end{document}
+
+
+% Local Variables:
+% TeX-engine: xetex
+% End:
