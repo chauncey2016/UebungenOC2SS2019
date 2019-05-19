@@ -3,10 +3,10 @@ import java.util.Random;
 
 public class Abgabe {
 
-	static long seed = 9;
+	static long seed = 11;
 	
 	public static void main(String[] args) {
-		int n = 11;
+		int n = 10;
 		int[] matrix = makePaths(n);
 		print(matrix, n);
 		
