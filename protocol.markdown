@@ -7,5 +7,5 @@
 # Protokoll zu Blatt02
 + Victor Gerling: Python-Code zu ACS, presentation, evaluation 
 + Lukas Huhn: 
-+ Qiang Chang: 
++ Qiang Chang: Lösungen zur Aufgaben der Grundlagen
 + Daniel Bossert:
