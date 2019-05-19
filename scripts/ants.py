@@ -54,14 +54,13 @@ class ACS:
                 self.local_update(a)
             self.global_update()
             for a in self.ants: a.reset()
-        self.end_routine();
 
 
     def nearest_neighbour_heuristic(self, city_count):
         """
         median lenght, rough approximation
         """
-        return 500.0 * (city_count-1)
+        return 1.0 / (500.0 * city_count)
 
 
     def city_exploitation(self, ant):
