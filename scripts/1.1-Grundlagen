@@ -1,0 +1,23 @@
+1. ACS hat 6 Hyperparameter. Geben Sie für jeden an:
+• das Symbol (z. B.m),
+• die Domäne (z. B. N) sowie
+• eine kurze Beschreibung was er konfiguriert (z. B. „Anzahl der Ameisen“)!
+Hinweis: Im Paper findet sich ein Tippfehler. Der Hyperparameter r heißt eigentlich (wie beim
+Ant System) _ (mit diesem Symbol tritt er auch in der Formel direkt vorher auf).
+Antwortung:
+das Symbol	die Domäne	Beschreibung
+ß	float	Determines importance between pheromone s and distance, when selecting the next city
+q0	float	Tradeoff between exploitation and exploration
+α	float	Pheromone decay during global update step
+ρ	float	Pheromone decay during local update step
+τ0 =〖(n*Lnn)〗^(-1)	float	Starting value of Pheromone-matrix, being used during local update
+m	int	Number of ants, which could be potentially parallized
+
+2. Ant-Q fügt einen weiteren Parameter zum System hinzu. Geben Sie dessen Symbol an!
+Antwortung:
+γ ist a float data has a range of [0,1), which is a parameter used to compute △τ
+
+3. Welchen Wert für τ0 empfehlen die Autoren? Wie schwierig ist es, an diesen Wert zu kommen? Argumentieren Sie gegebenenfalls mit O-Notation.
+Antwortung:
+Die Autoren empfehlen: τ0 = 〖(n*Lnn)〗^(-1)
+
