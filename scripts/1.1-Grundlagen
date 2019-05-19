@@ -19,5 +19,7 @@ Antwortung:
 
 3. Welchen Wert für τ0 empfehlen die Autoren? Wie schwierig ist es, an diesen Wert zu kommen? Argumentieren Sie gegebenenfalls mit O-Notation.
 Antwortung:
-Die Autoren empfehlen: τ0 = 〖(n*Lnn)〗^(-1)
+The authors suggest: τ0 = 〖(n*Lnn)〗^(-1), where Lnn is the tour length produced by the nearest neighbor heuristic and n is the number of cities.
+To be true, any very rough approximation of the optimal tour length would be suffice, hier we use a very rough approximation with 〖(n*500)〗^(-1).
+Complexity: O(n^(2)).
 
