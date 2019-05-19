@@ -4,6 +4,6 @@
 \defcounter {refsection}{0}\relax 
 \select@language {german}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {1}{Generator für TSP-Probleme}{3}{0}{1}
+\beamer@sectionintoc {1}{Aufgabe 01}{3}{0}{1}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {2}{Evaluation}{5}{0}{2}
+\beamer@sectionintoc {2}{Evaluation}{7}{0}{2}
