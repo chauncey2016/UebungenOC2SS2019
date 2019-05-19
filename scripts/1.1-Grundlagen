@@ -15,7 +15,7 @@ m	int	Number of ants, which could be potentially parallized
 
 2. Ant-Q fügt einen weiteren Parameter zum System hinzu. Geben Sie dessen Symbol an!
 Antwortung:
-γ ist a float data has a range of [0,1), which is a parameter used to compute △τ
+γ is a float data that has a range of [0,1), which is a parameter used to compute △τ
 
 3. Welchen Wert für τ0 empfehlen die Autoren? Wie schwierig ist es, an diesen Wert zu kommen? Argumentieren Sie gegebenenfalls mit O-Notation.
 Antwortung:
