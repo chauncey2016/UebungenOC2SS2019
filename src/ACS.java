@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class ACS {
@@ -24,7 +25,13 @@ public class ACS {
 	
 	Random rand;
 	
+	Emergence emergence;
+	
+	boolean debug = false;
+	
 	public ACS(int[] matrix, int n, Random rand){
+		emergence = new Emergence();
+		
 		delta = matrix;
 		this.n = n;
 		
@@ -57,6 +64,7 @@ public class ACS {
 	public int[] solve(){
 		for(int i=0; i<1000; i++){
 			resetAnts();
+			emergence.addPositions(tours, 0);
 			for(int j=1; j<n; j++){
 				for(int k=0; k<m; k++){
 					int r = tours[k][j-1];
@@ -65,20 +73,33 @@ public class ACS {
 					visited[k][s] = true;
 					L[k] += delta(r, s);
 				}
+				emergence.addPositions(tours, j);
 			}
 			for(int k=0; k<m; k++){
-				if(L[k] == 0){
+				if(debug && L[k] == 0)
 					System.out.println("H "+k);
-				}
 				if( L[k] < globalBestTourLength){
 					globalBestTourLength = L[k];
 					globalBestTour = tours[k].clone();
 				}
 			}
 			//all ants have built a complete solution
+			checktau();
 			globalUpdateRule4();
 		}
 		return globalBestTour;
+	}
+	void checktau(){
+		double max = Integer.MIN_VALUE;
+		double min = Integer.MAX_VALUE;
+		for(int i=0; i<tau.length; i++){
+			if(tau[i] < min)
+				min = tau[i];
+			if(tau[i] > max)
+				max = tau[i];
+		}
+		if(debug)
+			System.out.println(min+", "+max);
 	}
 	void resetAnts(){
 		for(int a=0; a<m; a++){
@@ -120,12 +141,14 @@ public class ACS {
 		}
 		globalBestTour 			= path;
 		globalBestTourLength 	= length;
-		System.out.println("G "+length+" "+Arrays.toString(path));
+		if(debug)
+			System.out.println("G "+length+" "+Arrays.toString(path));
 		return length;
 	}
 	void initTau(){
 		//javax.swing.JOptionPane.showMessageDialog(null, tau0+"");
-		System.out.println(tau0);
+		if(debug)
+			System.out.println(tau0);
 		for(int i=0; i< tau.length; i++)
 			tau[i] = tau0;
 	}
@@ -153,11 +176,10 @@ public class ACS {
 		double res = tau(r, s) * Math.pow(eta(r, s), beta)/sum;
 		if(Double.isNaN(res)){
 			//System.out.println("C: "+tau(r, s)+", "+Math.pow(eta(r, s), beta)+", "+sum);
-			if(sum == 0){
+			if(debug && sum == 0){
 				System.out.println("C");
-				for(int u=0; u<n; u++){
+				for(int u=0; u<n; u++)
 					System.out.println(tau(r, u)+","+eta(r, u)+","+ beta);
-				}
 			}
 		}
 		return res;
@@ -190,7 +212,7 @@ public class ACS {
 		}
 		if(visited_rs == false)
 			return 0;
-		if(globalBestTourLength == 0){
+		if(debug && globalBestTourLength == 0){
 			System.out.println("F");
 		}
 		return 1.0 / globalBestTourLength;
@@ -218,9 +240,8 @@ public class ACS {
 		for(int r=0; r<n; r++){
 			for(int s=r+1; s<n; s++){
 				val = (1.0 - alpha) * tau(r, s) + deltaTau(r, s);
-				if(Double.isInfinite(val)){
+				if(debug && Double.isInfinite(val))
 					System.out.println("E "+val+", "+tau(r, s)+", "+deltaTau(r, s));
-				}
 				setTau(r, s, val);
 			}
 		}
@@ -248,7 +269,7 @@ public class ACS {
 					s = u;
 				}
 			}
-			if(s == -1){
+			if(debug && s == -1){
 				String str = "";
 				for(boolean[] a: visited)
 					str += Arrays.toString(a);
@@ -275,7 +296,8 @@ public class ACS {
 				if(q <= sum)
 					return u;
 			}
-			System.out.println("B: sum="+sum+", q="+q);
+			if(debug)
+				System.out.println("B: sum="+sum+", q="+q);
 			return -1;
 		}
 	}

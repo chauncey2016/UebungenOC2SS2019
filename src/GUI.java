@@ -27,8 +27,16 @@ public class GUI extends JComponent{
 	public static void main(String[] args) {
 		JFrame f = new JFrame("Problem des Handelsreisenden");
 		f.setSize(700, 480);
+		
+		JPanel panel2 = new JPanel();
 		GUI canvas = new GUI();
-		f.add(canvas);
+		panel2.add(canvas);
+		
+		GraphComponent canvas2 = new GraphComponent();
+		panel2.add(canvas2);
+		
+		f.add(panel2);
+		
 		JPanel panel = new JPanel();
 		
 		JRadioButton r1=new JRadioButton("Brute Force");    
@@ -149,6 +157,7 @@ public class GUI extends JComponent{
 	boolean brute_force = false;
 	
 	public GUI() {
+		setPreferredSize(new Dimension(400, 400));
 		n = 9; //max 11 oder 10
 	}
 	
