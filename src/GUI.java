@@ -139,7 +139,7 @@ public class GUI extends JComponent{
 	String[] names = {"Brisbane", "Venice", "Prague", "London", 
 			"Edinburgh", "Paris", "Florence", "Rome", 
 			"Sydney", "Seville", "Rio de Janeiro", "Berlin", "Washington",
-			"Stockholm", "NY", "Madrid", "Barcelona"};
+			"Stockholm", "NY", "Madrid", "Barcelona", "Hong Kong", "Moskau", "St Petersburg", "Hamburg"};
 	
 	int n = 0;
 	int degree = 40;
@@ -209,8 +209,10 @@ public class GUI extends JComponent{
 		for(int i=0; i<n; i++) {
 			//int x = (int) (Math.random()*(getWidth() -2*off)) + off;
 			//int y = (int) (Math.random()*(getHeight() -2*off)) + off;
-			int x = random.nextInt(getWidth() - 2* off) + off;
-			int y = random.nextInt(getHeight() - 2* off) + off;
+			int w = 400;
+			int h = 400;
+			int x = random.nextInt(w - 2* off) + off;
+			int y = random.nextInt(h - 2* off) + off;
 			points[i] = new Point(x, y);
 		}
 		System.out.println(getWidth());
