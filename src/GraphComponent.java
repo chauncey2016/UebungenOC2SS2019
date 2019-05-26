@@ -7,12 +7,13 @@ import java.util.Vector;
 import javax.swing.JComponent;
 
 public class GraphComponent extends JComponent{
-	static GraphComponent unique;
+	static GraphComponent position;
+	static GraphComponent route;
+	static GraphComponent pheromon;
 	Vector<Double> values;
 	public GraphComponent() {
 		setPreferredSize(new Dimension(400, 400));
 		values = new Vector<Double>();
-		unique = this;
 	}
 	@Override
 	public void paint(Graphics g){
@@ -27,15 +28,19 @@ public class GraphComponent extends JComponent{
 		int h = getHeight();
 		int w = getWidth();
 		
-		
+		int off = 30;
 		int steps = 10;
 		int x, y;
 		double value;
 		double v1, v2, x1, x2, y1, y2;
 		g.setColor(Color.GRAY);
+		if( this == position)
+			g.setColor(Color.RED);
+		if( this == pheromon)
+			g.setColor(Color.BLUE);
 		for(int i=1; i<size; i++){
-			x1 = w*(i-1)/size;
-			x2 = w*i/size;
+			x1 = (w-off)*(i-1)/size + off;
+			x2 = (w-off)*i/size + off;
 			v1 = values.get(i-1);	
 			v2 = values.get(i);	
 			y1 = (int)(h * (v1-minVal) / (maxVal - minVal));
@@ -51,7 +56,7 @@ public class GraphComponent extends JComponent{
 			String str = new DecimalFormat("0.0#").format(value);
 			g.drawString(str, x, y);
 		}
-		System.out.println(size);
+		//System.out.println(size);
 	}
 	public void addValue(double val){
 		values.add(val);

@@ -33,7 +33,12 @@ public class GUI extends JComponent{
 		panel2.add(canvas);
 		
 		GraphComponent canvas2 = new GraphComponent();
+		GraphComponent.position = canvas2;
 		panel2.add(canvas2);
+		
+		GraphComponent canvas3 = new GraphComponent();
+		GraphComponent.pheromon = canvas3;
+		panel2.add(canvas3);
 		
 		f.add(panel2);
 		
@@ -162,7 +167,8 @@ public class GUI extends JComponent{
 	}
 	
 	public void init() {
-		GraphComponent.unique.values.clear();
+		GraphComponent.position.values.clear();
+		GraphComponent.pheromon.values.clear();
 		
 		if(useRandom)
 			points = makeRandomPoints();
@@ -188,7 +194,8 @@ public class GUI extends JComponent{
 			length = acs.globalBestTourLength;
 		}
 		
-		GraphComponent.unique.repaint();
+		GraphComponent.position.repaint();
+		GraphComponent.pheromon.repaint();
 		
 		long t1 = System.currentTimeMillis();
 		if( (t1-t0) < 1000)

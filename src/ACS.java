@@ -74,6 +74,7 @@ public class ACS {
 					L[k] += delta(r, s);
 				}
 				emergence.addPositions(tours, j);
+				emergence.addPheromon(tau);
 			}
 			for(int k=0; k<m; k++){
 				if(debug && L[k] == 0)
