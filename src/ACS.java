@@ -76,6 +76,7 @@ public class ACS {
 				emergence.addPositions(tours, j);
 				emergence.addPheromon(tau);
 			}
+			emergence.addRoute(tours);
 			for(int k=0; k<m; k++){
 				if(debug && L[k] == 0)
 					System.out.println("H "+k);

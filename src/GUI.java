@@ -40,6 +40,10 @@ public class GUI extends JComponent{
 		GraphComponent.pheromon = canvas3;
 		panel2.add(canvas3);
 		
+		GraphComponent canvas4 = new GraphComponent();
+		GraphComponent.route = canvas4;
+		panel2.add(canvas4);
+		
 		f.add(panel2);
 		
 		JPanel panel = new JPanel();
@@ -169,6 +173,7 @@ public class GUI extends JComponent{
 	public void init() {
 		GraphComponent.position.values.clear();
 		GraphComponent.pheromon.values.clear();
+		GraphComponent.route.values.clear();
 		
 		if(useRandom)
 			points = makeRandomPoints();
@@ -196,6 +201,7 @@ public class GUI extends JComponent{
 		
 		GraphComponent.position.repaint();
 		GraphComponent.pheromon.repaint();
+		GraphComponent.route.repaint();
 		
 		long t1 = System.currentTimeMillis();
 		if( (t1-t0) < 1000)

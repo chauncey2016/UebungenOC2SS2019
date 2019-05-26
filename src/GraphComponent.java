@@ -34,10 +34,21 @@ public class GraphComponent extends JComponent{
 		double value;
 		double v1, v2, x1, x2, y1, y2;
 		g.setColor(Color.GRAY);
-		if( this == position)
+		
+		String name = "";
+		if( this == position){
 			g.setColor(Color.RED);
-		if( this == pheromon)
+			name = "position";
+		}
+		if( this == pheromon){
 			g.setColor(Color.BLUE);
+			name = "pheromon";
+		}
+		if(this == route){
+			g.setColor(Color.GREEN);
+			name = "route";
+		}
+		
 		for(int i=1; i<size; i++){
 			x1 = (w-off)*(i-1)/size + off;
 			x2 = (w-off)*i/size + off;
@@ -56,6 +67,7 @@ public class GraphComponent extends JComponent{
 			String str = new DecimalFormat("0.0#").format(value);
 			g.drawString(str, x, y);
 		}
+		g.drawString(name, getWidth()-50, getHeight());
 		//System.out.println(size);
 	}
 	public void addValue(double val){
