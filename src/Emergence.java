@@ -20,6 +20,7 @@ public class Emergence {
 		entropyPosition.add(shannonEntropy);
 		if(entropyPosition.size() > 1)
 			System.out.println(shannonEntropy - entropyPosition.get(entropyPosition.size()-2));
+		GraphComponent.unique.addValue(shannonEntropy);
 	}
 
 	private double shannonEntropy(double[] p) {

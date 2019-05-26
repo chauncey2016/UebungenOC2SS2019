@@ -7,10 +7,12 @@ import java.util.Vector;
 import javax.swing.JComponent;
 
 public class GraphComponent extends JComponent{
+	static GraphComponent unique;
 	Vector<Double> values;
 	public GraphComponent() {
 		setPreferredSize(new Dimension(400, 400));
 		values = new Vector<Double>();
+		unique = this;
 	}
 	@Override
 	public void paint(Graphics g){
@@ -28,16 +30,16 @@ public class GraphComponent extends JComponent{
 		g.setColor(Color.BLACK);
 		int steps = 10;
 		int x, y;
-		double label;
-		for(int i=0; i<steps; i++){
-			x = 0;
-			y = h - h*i/steps;
-			label = minVal + (maxVal - minVal)*i/steps;
-			g.drawString(makeLabel(label), x, y);
+		double value;
+		for(int i=0; i<size; i++){
+			x = w*i/steps;
+			value = values.get(i);	
+			y = (int)(h * (value-minVal) / (maxVal - minVal));
+			g.fillOval(x-2, y-2, 4, 4);
 		}
 	}
-	private String makeLabel(double label) {
-		return label + "";
+	public void addValue(double val){
+		values.addElement(val);
 	}
 	private double calcMax(Vector<Double> vec) {
 		double max = Integer.MIN_VALUE;
