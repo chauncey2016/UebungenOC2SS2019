@@ -10,23 +10,53 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class GUI extends JComponent{
 	JTextField out;
 	long seed = 9L;
+	Random random;
 	public static void main(String[] args) {
 		JFrame f = new JFrame("Problem des Handelsreisenden");
 		f.setSize(700, 480);
 		GUI canvas = new GUI();
 		f.add(canvas);
 		JPanel panel = new JPanel();
+		
+		JRadioButton r1=new JRadioButton("Brute Force");    
+		r1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(r1.isSelected()){
+					canvas.brute_force = true;
+					canvas.init();
+				}
+					
+			}
+		});
+		JRadioButton r2=new JRadioButton("ACS");
+		r2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(r2.isSelected()){
+					canvas.brute_force = false;
+					canvas.init();
+				}
+			}
+		});
+		ButtonGroup bg=new ButtonGroup();    
+		bg.add(r1);
+		bg.add(r2);
+		panel.add(r1);
+		panel.add(r2);
 		
 		JButton button1 = new JButton("reset");
 		button1.addActionListener(new ActionListener() {
@@ -108,13 +138,15 @@ public class GUI extends JComponent{
 
 	String[] names = {"Brisbane", "Venice", "Prague", "London", 
 			"Edinburgh", "Paris", "Florence", "Rome", 
-			"Sydney", "Seville", "Rio de Janeiro", "Berlin", "Washington"};
+			"Sydney", "Seville", "Rio de Janeiro", "Berlin", "Washington",
+			"Stockholm", "NY", "Madrid", "Barcelona"};
 	
-	int n = -1;
+	int n = 0;
 	int degree = 40;
 	Point[] points = null;
 	Point[] path = null;
 	boolean useRandom = false;
+	boolean brute_force = false;
 	
 	public GUI() {
 		n = 9; //max 11 oder 10
@@ -124,15 +156,28 @@ public class GUI extends JComponent{
 		
 		if(useRandom)
 			points = makeRandomPoints();
-		else
+		else{
+			random = new Random(seed);
 			points = makCirclePoints(degree);
+		}
+			
+		
 		int[] matrix =  makeMatrix();
 		Abgabe.print(matrix, n);
 		long t0 = System.currentTimeMillis();
 		
-		int[] a = Abgabe.solve(n,matrix);
+		int[] a    = null;
+		int length = -1;
 		
-		int length = Abgabe.length2(a, n, matrix);
+		if(brute_force){
+			a = Abgabe.solve(n,matrix);
+			length = Abgabe.length2(a, n, matrix);
+		}else{
+			ACS acs = new ACS(matrix, n, random);
+			a = acs.solve();
+			length = acs.globalBestTourLength;
+		}
+		
 		
 		long t1 = System.currentTimeMillis();
 		if( (t1-t0) < 1000)
@@ -145,17 +190,20 @@ public class GUI extends JComponent{
 		for(int i=0; i < n; i++)
 			path[i] = points[ a[i] ];
 		
+		/*
 		System.out.println();
 		for(int i=0; i < n; i++)
 			System.out.print(names[a[i]]+"\t");
 		System.out.println();
 		for(int i=0; i < n; i++)
 			System.out.print(a[i]+"\t");
+		*/
+		
 		repaint();
 	}
 	
 	private Point[] makeRandomPoints() {
-		Random random = new Random(seed);
+		random = new Random(seed);
 		Point[] points = new Point[n];
 		int off = 20;
 		for(int i=0; i<n; i++) {
