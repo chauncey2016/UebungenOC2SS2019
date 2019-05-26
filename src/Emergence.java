@@ -18,8 +18,8 @@ public class Emergence {
 		double[] p = calcPropabilities(positions, n);
 		double shannonEntropy = shannonEntropy(p);
 		entropyPosition.add(shannonEntropy);
-		if(entropyPosition.size() > 1)
-			System.out.println(shannonEntropy - entropyPosition.get(entropyPosition.size()-2));
+		//if(entropyPosition.size() > 1)
+		//	System.out.println(shannonEntropy - entropyPosition.get(entropyPosition.size()-2));
 		GraphComponent.unique.addValue(shannonEntropy);
 	}
 

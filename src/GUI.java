@@ -39,7 +39,7 @@ public class GUI extends JComponent{
 		
 		JPanel panel = new JPanel();
 		
-		JRadioButton r1=new JRadioButton("Brute Force");    
+		JRadioButton r1=new JRadioButton("Brute Force"); 
 		r1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -51,6 +51,7 @@ public class GUI extends JComponent{
 			}
 		});
 		JRadioButton r2=new JRadioButton("ACS");
+		r2.setSelected(true);
 		r2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -114,7 +115,6 @@ public class GUI extends JComponent{
 					canvas.n = n;
 					canvas.init();
 				}
-				
 			}
 		});
 		field2.setPreferredSize(new Dimension(40, 20));
@@ -162,6 +162,7 @@ public class GUI extends JComponent{
 	}
 	
 	public void init() {
+		GraphComponent.unique.values.clear();
 		
 		if(useRandom)
 			points = makeRandomPoints();
@@ -187,6 +188,7 @@ public class GUI extends JComponent{
 			length = acs.globalBestTourLength;
 		}
 		
+		GraphComponent.unique.repaint();
 		
 		long t1 = System.currentTimeMillis();
 		if( (t1-t0) < 1000)
