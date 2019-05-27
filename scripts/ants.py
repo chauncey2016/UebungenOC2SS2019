@@ -1,7 +1,9 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import random
 
 from symmetric_matrix import SymmetricMatrix
+from emergence import emergence, entropy, preprocess_pheromone, normalize_tour
 
 
 class Ant:
@@ -35,6 +37,7 @@ class ACS:
         tau := adj_matrix with current pheromone levels
         phi := adj_matrix with distances between cities 
         """
+        self.seed = seed
         self.myrand = random.Random(seed)
         self.city_count = tsp.size
         self.iterations = iterations
@@ -43,6 +46,11 @@ class ACS:
         self.m, self.beta, self.alpha, self.q0, self.rho, self.phi = m, beta, alpha, q0, rho, tsp
         self.ants = [Ant(self.city_count, self.myrand) for a in range(m)]
 
+        self.shortest_len_history = []
+        self.shortest_route_history = []
+        self.route_entropy_history = []
+        self.phero_entropy_history = []
+        self.city_entropy_history = []
 
     def go_ants(self):
         """
@@ -54,6 +62,13 @@ class ACS:
                 self.local_update(a)
             self.global_update()
             for a in self.ants: a.reset()
+            if i % 10 == 0 and i != 0: 
+                emerg_city = emergence(self.city_entropy_history[i-10], self.city_entropy_history[i])
+                emerg_route = emergence(self.route_entropy_history[i-10], self.route_entropy_history[i])
+                emerg_phero = emergence(self.phero_entropy_history[i-10], self.phero_entropy_history[i])
+                print('Emerg. city: ', emerg_city)
+                print('Emerg. route: ', emerg_route)
+                print('Emerg. phero: ', emerg_phero)
 
 
     def nearest_neighbour_heuristic(self, city_count):
@@ -129,6 +144,14 @@ class ACS:
         for t in tour_best:
             self.tau[t] += self.alpha * (1 / L_best)
         
+        #calc entropy
+        self.shortest_len_history.append(L_best)
+        self.shortest_route_history.append(tour_best)
+        self.route_entropy_history.append(entropy([normalize_tour(a.tour) for a in self.ants]))
+        self.phero_entropy_history.append(entropy(preprocess_pheromone(self.tau)))
+        #just takin one city per iteration
+        self.city_entropy_history.append(entropy([a.r_k for a in self.ants]))
+
 
     def greedy_selector(self):
         """
@@ -151,5 +174,13 @@ class ACS:
         best_route, route_len = self.greedy_selector()
         print('Best route: ', best_route)
         print('Length of route: ', route_len)
-        
+
+        with open(r'output/Hcity-'+str(self.seed), 'w') as fc \
+             ,open(r'output/Hroute-'+str(self.seed), 'w') as fr \
+             ,open(r'output/Hphero-'+str(self.seed), 'w') as fp \
+             ,open(r'output/len-'+str(self.seed), 'w') as fl:
+            for l in self.city_entropy_history: fc.write(str(l)+'\n')
+            for l in self.route_entropy_history: fr.write(str(l)+'\n')
+            for l in self.phero_entropy_history: fp.write(str(l)+'\n')
+            for l in self.shortest_len_history: fl.write(str(l)+'\n')
 
