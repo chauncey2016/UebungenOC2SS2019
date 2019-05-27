@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import seaborn as sns
 
 
 avg_len = []
@@ -52,4 +54,7 @@ plt.plot(np.average(avg_phero, axis=0), label='phero')
 plt.legend()
 plt.show()
 
+
+for i in np.average(avg_phero, axis=0):
+    print(i)
 

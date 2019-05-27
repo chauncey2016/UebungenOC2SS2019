@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pip3 install --user numpy
+pip3 install --user numpy matplotlib
