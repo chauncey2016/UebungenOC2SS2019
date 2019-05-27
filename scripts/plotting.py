@@ -46,15 +46,31 @@ for i in range(1, 10):
         avg_phero.append(temp_array)
 
 
+avg_city = np.average(avg_city, axis=0)
+avg_route = np.average(avg_route, axis=0)
+avg_phero = np.average(avg_phero, axis=0)
+
+city_final = []
+for i in range(avg_city.size-1):
+    city_final.append(avg_city[i]-avg_city[i+1])
+
+route_final = []
+for i in range(avg_route.size-1):
+    route_final.append(avg_route[i]-avg_route[i+1])
+
+phero_final = []
+for i in range(avg_phero.size-1):
+    phero_final.append(avg_phero[i]-avg_phero[i+1])
+
 fig = plt.gcf()
 fig.canvas.set_window_title('Emerg per iter')
-plt.plot(np.average(avg_city, axis=0), label='city')
-plt.plot(np.average(avg_route, axis=0), label='route')
-plt.plot(np.average(avg_phero, axis=0), label='phero')
+plt.plot(city_final, label='city')
+plt.plot(route_final, label='route')
+plt.plot(phero_final, label='phero')
 plt.legend()
 plt.show()
 
 
-for i in np.average(avg_phero, axis=0):
+for i in phero_final:
     print(i)
 
