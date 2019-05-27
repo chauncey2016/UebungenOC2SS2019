@@ -9,3 +9,9 @@
 + Lukas Huhn: 
 + Qiang Chang: Lösungen zur Aufgaben der Grundlagen
 + Daniel Bossert:
+
+# Protokoll zu Blatt03
++ Victor Gerling: Python-Code, Präsentation
++ Lukas Huhn: Java-Code
++ Qiang Chang:
++ Daniel Bossert:
