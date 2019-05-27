@@ -33,13 +33,22 @@ public class GUI extends JComponent{
 		panel2.add(canvas);
 		
 		GraphComponent canvas2 = new GraphComponent();
+		GraphComponent.position = canvas2;
 		panel2.add(canvas2);
+		
+		GraphComponent canvas3 = new GraphComponent();
+		GraphComponent.pheromon = canvas3;
+		panel2.add(canvas3);
+		
+		GraphComponent canvas4 = new GraphComponent();
+		GraphComponent.route = canvas4;
+		panel2.add(canvas4);
 		
 		f.add(panel2);
 		
 		JPanel panel = new JPanel();
 		
-		JRadioButton r1=new JRadioButton("Brute Force");    
+		JRadioButton r1=new JRadioButton("Brute Force"); 
 		r1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -51,6 +60,7 @@ public class GUI extends JComponent{
 			}
 		});
 		JRadioButton r2=new JRadioButton("ACS");
+		r2.setSelected(true);
 		r2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -114,7 +124,6 @@ public class GUI extends JComponent{
 					canvas.n = n;
 					canvas.init();
 				}
-				
 			}
 		});
 		field2.setPreferredSize(new Dimension(40, 20));
@@ -162,6 +171,9 @@ public class GUI extends JComponent{
 	}
 	
 	public void init() {
+		GraphComponent.position.values.clear();
+		GraphComponent.pheromon.values.clear();
+		GraphComponent.route.values.clear();
 		
 		if(useRandom)
 			points = makeRandomPoints();
@@ -187,6 +199,9 @@ public class GUI extends JComponent{
 			length = acs.globalBestTourLength;
 		}
 		
+		GraphComponent.position.repaint();
+		GraphComponent.pheromon.repaint();
+		GraphComponent.route.repaint();
 		
 		long t1 = System.currentTimeMillis();
 		if( (t1-t0) < 1000)
