@@ -9,7 +9,7 @@ def entropy(data):
     dict = {}
     for key in data:
         if str(key) in dict: dict[str(key)] += 1
-        else:           dict[str(key)]  = 1
+        else:                dict[str(key)]  = 1
     return -np.sum([v/len(data) * np.log2(v/len(data)) for _, v in dict.items()])
     
 
