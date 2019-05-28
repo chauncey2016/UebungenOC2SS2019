@@ -165,6 +165,7 @@ class ACS:
             s_k = cities_to_visit.pop(s_ind)
             best_route.append((r_k, s_k))
             r_k = s_k
+        best_route.append((r_k, 0))
         
         shortest_path = np.sum([self.phi[(p)] for p in best_route])
         return best_route, shortest_path

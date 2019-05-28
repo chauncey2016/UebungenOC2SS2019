@@ -13,5 +13,4 @@
 # Protokoll zu Blatt03
 + Victor Gerling: Python-Code, Präsentation
 + Lukas Huhn: Java-Code
-+ Qiang Chang:
-+ Daniel Bossert:
++ Qiang Chang: Verbesserung Abgabe

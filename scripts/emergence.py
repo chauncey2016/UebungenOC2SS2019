@@ -10,15 +10,15 @@ def entropy(data):
     for key in data:
         if str(key) in dict: dict[str(key)] += 1
         else:           dict[str(key)]  = 1
-    return np.sum([v/len(data) * np.log2(v/len(data)) for _, v in dict.items()])
+    return -np.sum([v/len(data) * np.log2(v/len(data)) for _, v in dict.items()])
     
 
-def preprocess_pheromone(data, step=100, minimum=0, maximum=0.0003):
+def preprocess_pheromone(data, step=1000, minimum=0.0, maximum=0.0004):
     step = np.abs(minimum-maximum) / step
     preproc_data = []
     for x in range(data.size):
         for y in range(data.size):
-            if x <= y: preproc_data.append(data[(x,y)] // step)
+            if x <= y: preproc_data.append((data[(x,y)] + minimum) // step)
     return preproc_data
  
   
