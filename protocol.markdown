@@ -22,7 +22,7 @@
 
 
 
-#(einfach in Latex kopieren, danke Viktor)
+# (einfach in Latex kopieren, danke Viktor)
 # aufgabe1.1.2
 + Szenario 1 entspricht Target Space T, weil Fahren mit 180km/h auf der linken Spur die beste Choice ist, damit kann er schnellst nach Hannover ankommen.
 + Szenario 2 entspricht Transition von Target Space nach Survival Space. Wegen des Knalls von einer der Reifen kann er nicht weiter fahren, sondern ohne 
@@ -32,11 +32,11 @@ weitere Schäden auf dem Standsreifen halten.
 + Szenario 5 entspricht Transition von Acceptance Space nach Target Space. Nach Repair in der Werkstatt kann alles wie Anfangszustand zurückkehren. 
 + Szenario 6 entspricht Target Space. Jetzt kann er wieder mit 180km/h fahren.
 
-#aufgabe1.2.1
+# aufgabe1.2.1
 + Acceptance space
 
-#aufgabe1.2.2
+# aufgabe1.2.2
 + Bezüglich Staus ist das System nicht robust, bezüglich der Störung aud Aufgabe 1.1 ist es aber weakly robust
 
-#aufgabe1.2.3
+# aufgabe1.2.3
 + Wegen eines Gewittersturm gibt es jetzt eine Verkehrssteurung bzw. Geschwindigkeitsbegrenzung(80km/h)
