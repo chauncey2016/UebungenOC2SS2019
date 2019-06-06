@@ -36,7 +36,7 @@ weitere Schäden auf dem Standsreifen halten.
 + Acceptance space
 
 # aufgabe1.2.2
-+ Bezüglich Staus ist das System nicht robust, bezüglich der Störung aud Aufgabe 1.1 ist es aber weakly robust
++ Bezüglich Staus ist das System nicht robust, bezüglich der Störung aus Aufgabe 1.1 ist es aber weakly robust
 
 # aufgabe1.2.3
 + Wegen eines Gewittersturm gibt es jetzt eine Verkehrssteurung bzw. Geschwindigkeitsbegrenzung(80km/h)
