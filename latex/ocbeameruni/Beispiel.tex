@@ -122,7 +122,7 @@ Wie kann man das Szenario so erweitern, dass es auch ein Beispiel für Flexibili
 \begin{frame}{3.1}
 Welche Einheit hat die Utility-Degradation bei dieser Maschine?
     \begin{itemize}
-    \item Anzahl gefertigter Stücke
+    \item Anzahl gefertigter Stücke pro Zeitfenster
     \end{itemize}
 \end{frame}
 
@@ -147,9 +147,9 @@ Berechnen Sie die Utility-Degradation mithilfe einer näherungsweisen Integratio
 der Übung vorgestellt wurde!
     \begin{itemize}
     \item $t_{\delta} = 1450, t_{end} = 3180$
-    \item $A_1 = (3180-1450)/72 * \sum{_t} U(t) \Rightarrow 1730/72*7290 = 175162.5$
+    \item $A_1 = (3180-1450)/72 * \sum{_t} U(t) \Rightarrow 1730/28 * 1686 = 104170.71$
     \item $A_2 = (3180-1450)*100 = 173000$
-    \item $D_u = A_2 - A_1 = 173000 - 175162.5 = - 2162.5$
+    \item $D_u = A_2 - A_1 = 173000 - 104170.71 = 68829.29$
     \end{itemize}
 \end{frame}
 
@@ -160,7 +160,7 @@ Sie dazu das in der Übung vorgeschlagene Robustheitsmaß.
     \item $t_{\delta} = 1450, t_{end} = 3180, t_{accept} = 100, u_{\delta} = 13$
     \item $A_3 = (3180-1450) * (100-13) = 150510$
     \item $A_4 = (3180-1450) * 13 = 22490$
-    \item $R_s = (D_u - A_4) / A_3 = (-2162.5 - 22490) / 150510 = -0.163793103$
+    \item $R_s = (D_u - A_4) / A_3 = (68829.29 - 22490) / 150510 = 0.307881802$
     \end{itemize}
 \end{frame}
 
@@ -168,7 +168,7 @@ Sie dazu das in der Übung vorgeschlagene Robustheitsmaß.
 Ist ein Garantiefall aufgetreten, den die Firma geltend machen kann? Warum (nicht)?
     \begin{itemize}
     \item Geg.: Robustheit gegenüber Änderungen in der Luftfeuchtigkeit: 60 %.
-    \item Garantie kann geltend gemacht werden, da Robustheitsmaß -0.16 beträgt
+    \item Garantie kann geltend gemacht werden, da Robustheitsmaß nur 0.30 beträgt
     \end{itemize}
 \end{frame}
 
