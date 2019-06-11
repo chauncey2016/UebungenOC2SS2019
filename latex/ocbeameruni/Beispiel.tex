@@ -116,6 +116,56 @@ Wie kann man das Szenario so erweitern, dass es auch ein Beispiel für Flexibili
 
 \section{Aufgabe 02}
 
+\begin{frame}{2.1}
+1. Gegeben: Zustandsraum $z=\mathbb{Z}^3$, drei-dimensional. Utility Function $\eta$.
+\begin{equation}
+	\vec{\eta}(\vec{z}) = (\eta_0(\vec{z})) = u \in \mathbb{R}
+\end{equation}
+	, wobei
+\begin{equation}
+\eta_0(\vec{z}) = \eta_0(\begin{bmatrix}z_{1} \\z_{2} \\z_3\end{bmatrix}) = | z_1^5 + z_2^2 |
+\end{equation}
+
+Gesucht: Target Space
+\begin{equation}
+z_\Omega = \{\vec{z} \in \mathbb{R}^3 : \eta_0(\vec{z}) = 0 \}
+\end{equation}
+\end{frame}
+\begin{frame}{2.1}
+Einsetzen
+\begin{equation}
+z_\Omega = \{ \begin{bmatrix}z_{1} \\z_{2} \\z_3\end{bmatrix} : \eta_0(\vec{z}) = 0 \}
+= \{ \begin{bmatrix}z_{1} \\z_{2} \\z_3\end{bmatrix} :| z_1^5 + z_2^2 | = 0 \}
+\end{equation}
+\begin{equation}
+= \{ \begin{bmatrix}z_{1} \\z_{2} \\z_3\end{bmatrix} : z_1 = z_1(z_2) := \sqrt[5]{-z_2^2}, \}
+= \{ \begin{bmatrix} \sqrt[5]{-z_2^2} \\z_{2} \\z_3\end{bmatrix}\}
+\end{equation}
+
+\includegraphics[scale=0.5]{z1.png}
+%TODO Graphics Einbinden
+\end{frame}
+
+\begin{frame}{2.2}
+\begin{equation}
+delta(\vec{z_0}) = ( \begin{bmatrix}-4\\32-30\\100\end{bmatrix} ) = ( \begin{bmatrix}-4\\2\\100\end{bmatrix} )
+\end{equation}
+\begin{equation}
+\eta(delta(\vec{z_0})) = |-4^5 + 2^2| = |-1024 + 4| = 1020 > 100
+\end{equation}
+nicht akzeptable
+\end{frame}
+
+\begin{frame}{2.3}
+3. Optimale Sequence: 30 mal $f_2^{+}$ anwenden führt wieder zu $z_0$.
+\begin{equation}
+f_2^{+,30}(delta(\vec{z_0})) = \begin{bmatrix}-4\\32\\100\end{bmatrix} = \vec{z_0} \in z_{\Omega}
+\end{equation}
+\end{frame}
+
+\begin{frame}{2.4}
+Schwach Robust
+\end{frame}
 
 \section{Aufgabe 03}
 

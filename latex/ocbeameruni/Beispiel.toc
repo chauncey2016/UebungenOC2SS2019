@@ -8,4 +8,4 @@
 \defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {2}{Aufgabe 02}{11}{0}{2}
 \defcounter {refsection}{0}\relax 
-\beamer@sectionintoc {3}{Aufgabe 03}{12}{0}{3}
+\beamer@sectionintoc {3}{Aufgabe 03}{17}{0}{3}
