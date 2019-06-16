@@ -42,31 +42,31 @@
 
 \begin{frame}{Black-Box 1}
     \begin{center}
-    \includegraphics[scale=0.16]{plots/bb1.png}
+    \includegraphics[scale=0.2]{plots/bb1.png}
     \end{center}
 \end{frame}
 
 \begin{frame}{Black-Box 2}
     \begin{center}
-    \includegraphics[scale=0.16]{plots/bb2.png}
+    \includegraphics[scale=0.25]{plots/bb2.png}
     \end{center}
 \end{frame}
 
 \begin{frame}{Black-Box 3}
     \begin{center}
-    \includegraphics[scale=0.16]{plots/bb3.png}
+    \includegraphics[scale=0.3]{plots/bb3.png}
     \end{center}
 \end{frame}
 
 \begin{frame}{Black-Box 4}
     \begin{center}
-    \includegraphics[scale=0.16]{plots/bb4.png}
+    \includegraphics[scale=0.3]{plots/bb4.png}
     \end{center}
 \end{frame}
 
 \begin{frame}{Black-Box 5}
     \begin{center}
-    \includegraphics[scale=0.16]{plots/bb5.png}
+    \includegraphics[scale=0.25]{plots/bb5.png}
     \end{center}
 \end{frame}
 
@@ -74,8 +74,12 @@
 Lässt sich eine Aussage treffen, bei welcher Blackbox dieses Verfahren am besten funktioniert?
 Können Sie sich denken, weshalb?
     \begin{itemize}
-    \item Geg.: Robustheit gegenüber Änderungen in der Luftfeuchtigkeit: 60 %.
-    \item Garantie kann geltend gemacht werden, da Robustheitsmaß nur 0.30 beträgt
+    \item BB1: schwankt stark $\Rightarrow$ funktioniert schlecht
+    \item BB2: konvergiert schnell gegen kleine Werte $\Rightarrow$ funktioniert gut
+    \item BB3: schwankt stark $\Rightarrow$ schlecht
+    \item BB4: konvergiert gegen kleine Werte $\Rightarrow$ gut
+    \item BB5: konvergiert gegen größere Werte $\Rightarrow$ gut
+    \item $\Rightarrow$ BB2, BB5 & BB5 scheinen alle recht gut zu funktionieren.
     \end{itemize}
 \end{frame}
 
@@ -84,8 +88,7 @@ Können Sie sich denken, weshalb?
 Ist dieses Verfahren effizient? Wie könnte man das Verfahren leicht(!) abwandeln, um ein (noch)
 effizienteres Verfahren zu erhalten?
     \begin{itemize}
-    \item Geg.: Robustheit gegenüber Änderungen in der Luftfeuchtigkeit: 60 %.
-    \item Garantie kann geltend gemacht werden, da Robustheitsmaß nur 0.30 beträgt
+    \item Sobald man merkt, dass die BB auf größer/kleiner werdende Werte anspringt Bereich der Zufallszahl anpassen. Man wählt dann also zwischen [current-best, MAXVALUE] oder [MINVALUE, current-best]. 
     \end{itemize}
 \end{frame}
 
