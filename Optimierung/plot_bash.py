@@ -15,7 +15,7 @@ def decode_bb(bb):
                 current_cost = cost[i]
                 if i == 0 or current_cost < best_cost:
                     best_cost = current_cost
-                    temp_result.append(opti[i])
+                    temp_result.append(cost[i])
                 else: temp_result.append(temp_result[-1])
             result.append(temp_result)
             

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2019.5.13)  16 JUN 2019 22:34
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2019.5.13)  17 JUN 2019 20:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1859,73 +1859,70 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [3
 
 ]
-File: plots/bb1.png Graphic file (type bmp)
-<plots/bb1.png>
+File: plots/bb1_2.png Graphic file (type bmp)
+<plots/bb1_2.png>
 File: Logo.pdf Graphic file (type pdf)
 <use Logo.pdf>
  [4
 
 ]
-File: plots/bb2.png Graphic file (type bmp)
-<plots/bb2.png>
-File: Logo.pdf Graphic file (type pdf)
-<use Logo.pdf>
- [5
+File: plots/bb2_2.png Graphic file (type bmp)
+<plots/bb2_2.png>
 
-]
-File: plots/bb3.png Graphic file (type bmp)
-<plots/bb3.png>
-
-Overfull \hbox (49.58284pt too wide) in paragraph at lines 59--59
+Overfull \hbox (15.0342pt too wide) in paragraph at lines 53--53
  [] 
  []
 
 File: Logo.pdf Graphic file (type pdf)
 <use Logo.pdf>
 
-Overfull \vbox (46.57176pt too high) detected at line 59
+Overfull \vbox (14.48158pt too high) detected at line 53
+ []
+
+[5
+
+]
+File: plots/bb3_2.png Graphic file (type bmp)
+<plots/bb3_2.png>
+
+Overfull \hbox (11.42068pt too wide) in paragraph at lines 59--59
+ [] 
+ []
+
+File: Logo.pdf Graphic file (type pdf)
+<use Logo.pdf>
+
+Overfull \vbox (22.61195pt too high) detected at line 59
  []
 
 [6
 
 ]
-File: plots/bb4.png Graphic file (type bmp)
-<plots/bb4.png>
-
-Overfull \hbox (19.44597pt too wide) in paragraph at lines 65--65
- [] 
- []
-
+File: plots/bb4_2.png Graphic file (type bmp)
+<plots/bb4_2.png>
 File: Logo.pdf Graphic file (type pdf)
 <use Logo.pdf>
 
-Overfull \vbox (28.14273pt too high) detected at line 65
+Overfull \vbox (1.00977pt too high) detected at line 65
  []
 
 [7
 
 ]
-File: plots/bb5.png Graphic file (type bmp)
-<plots/bb5.png>
-
-Overfull \hbox (0.76085pt too wide) in paragraph at lines 71--71
- [] 
- []
-
+File: plots/bb5_2.png Graphic file (type bmp)
+<plots/bb5_2.png>
 File: Logo.pdf Graphic file (type pdf)
 <use Logo.pdf>
+
+Overfull \vbox (14.3797pt too high) detected at line 71
+ []
+
 [8
 
 ]
-! Misplaced alignment tab character &.
-\beamer@doifinframe ...m $\Rightarrow $ BB2, BB5 &
-                                                   BB5 scheinen alle recht g...
-l.84 \end{frame}
-                
-? 
 File: Logo.pdf Graphic file (type pdf)
 <use Logo.pdf>
-[9
+ [9
 
 ]
 File: Logo.pdf Graphic file (type pdf)
@@ -1954,10 +1951,10 @@ Package logreq Info: Writing requests to 'Beispiel.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44312 strings out of 493041
- 878277 string characters out of 6138794
+ 44316 strings out of 493041
+ 878367 string characters out of 6138794
  1350388 words of memory out of 5000000
- 47621 multiletter control sequences out of 15000+600000
+ 47625 multiletter control sequences out of 15000+600000
  537607 words of font info for 75 fonts, out of 8000000 for 9000
  1330 hyphenation exceptions out of 8191
  79i,13n,119p,1804b,3584s stack positions out of 5000i,500n,10000p,200000b,80000s
