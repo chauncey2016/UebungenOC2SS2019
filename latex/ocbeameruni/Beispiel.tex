@@ -46,16 +46,62 @@
     \end{center}
 \end{frame}
 
+
+\begin{frame}{... vs Input in 0...400}
+\begin{figure}
+\centering
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb1_2.png}
+\end{subfigure}
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb1_distr.png}
+\end{subfigure}
+\end{figure}
+\end{frame}
+
 \begin{frame}{Black-Box 2}
     \begin{center}
     \includegraphics[scale=0.25]{plots/bb2_2.png}
     \end{center}
 \end{frame}
 
+
+\begin{frame}{... vs Input in 0...400}
+\begin{figure}
+\centering
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb2_2.png}
+\end{subfigure}
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb2_distr.png}
+\end{subfigure}
+\end{figure}
+\end{frame}
+
+
 \begin{frame}{Black-Box 3}
     \begin{center}
     \includegraphics[scale=0.25]{plots/bb3_2.png}
     \end{center}
+\end{frame}
+
+
+\begin{frame}{... vs Input in 0...400}
+\begin{figure}
+\centering
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb3_2.png}
+\end{subfigure}
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb3_distr.png}
+\end{subfigure}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Black-Box 4}
@@ -64,11 +110,42 @@
     \end{center}
 \end{frame}
 
+
+\begin{frame}{... vs Input in 0...400}
+\begin{figure}
+\centering
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb4_2.png}
+\end{subfigure}
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb4_distr.png}
+\end{subfigure}
+\end{figure}
+\end{frame}
+
 \begin{frame}{Black-Box 5}
     \begin{center}
     \includegraphics[scale=0.25]{plots/bb5_2.png}
     \end{center}
 \end{frame}
+
+
+\begin{frame}{... vs Input in 0...400}
+\begin{figure}
+\centering
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb5_2.png}
+\end{subfigure}
+\begin{subfigure}
+  \centering
+  \includegraphics[width=.5\linewidth]{plots/bb5_distr.png}
+\end{subfigure}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}{Beste Blackbox für Verfahren?}
 Lässt sich eine Aussage treffen, bei welcher Blackbox dieses Verfahren am besten funktioniert?
@@ -78,7 +155,7 @@ Können Sie sich denken, weshalb?
     \item BB2: Optimum wird nahezu sofort gefunden
     \item BB3: findet sein Optimum bei Iteration ~40
     \item BB4: findet sein Optimum bei Iteration ~15
-    \item BB5: braucht am längsten um sein Optimum zu finden
+    \item BB5: wird sehr lange brauchen um sein Optimum zu finden
     \item $\Rightarrow$ BB2 funktioniert am besten.
     \end{itemize}
 \end{frame}
@@ -88,6 +165,7 @@ Können Sie sich denken, weshalb?
 Ist dieses Verfahren effizient? Wie könnte man das Verfahren leicht(!) abwandeln, um ein (noch)
 effizienteres Verfahren zu erhalten?
     \begin{itemize}
+    \item Verfahren ist nicht effizient, vorherige Erkenntnisse werden nie mit zur Rate gezogen
     \item Sobald man merkt, dass die BB auf größer/kleiner werdende Werte anspringt Bereich der Zufallszahl anpassen. Man wählt dann also zwischen [current-best, MAXVALUE] oder [MINVALUE, current-best]. 
     \end{itemize}
 \end{frame}
