@@ -59,7 +59,7 @@ public class SimulatedAnnealing {
 			return t2(a, b);
 	}
 	double eta = 1.0; //iMax to 0
-	double alpha = 0.993;
+	double alpha = 0.987643;
 	double t1(int iMax, int i){
 		return iMax - eta * i;
 	}
