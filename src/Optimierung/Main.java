@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws Exception{
-		System.out.println("Main Optimierung");
+		System.out.println("Main Optimierung By author");
 		DockerAdapter adapter = DockerAdapter.instance();
 		//max Iterations
 		int testMax = 1000;
