@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class DockerAdapter {
+	private static int modus = 1;
 	Scanner scan;
 	Scanner in_scan;
 	PrintWriter out;
@@ -14,9 +15,20 @@ public class DockerAdapter {
 			unique = new DockerAdapter();
 		return unique;
 	}
+	public static int getDimensions(){
+		if(modus == 1) return 3;
+		if(modus == 2) return 5;
+		if(modus == 3) return 2;
+		if(modus == 4) return 10;
+		if(modus == 5) return 2;
+		return -1;
+	}
+	public static void setModus(int i){
+		modus = i;
+	}
 	private DockerAdapter() throws Exception{
 		//Start Process
-		Process p = Runtime.getRuntime().exec("docker run -i bb -b 1");
+		Process p = Runtime.getRuntime().exec("docker run -i bb -b "+modus);
 		
 		//Init Streams
 		scan = new Scanner(p.getErrorStream());
