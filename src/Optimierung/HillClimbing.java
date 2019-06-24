@@ -88,7 +88,7 @@ public class HillClimbing {
 				}
 			}
 			if(st != null)
-				st.push(i, adapter.nextVal(nextValues));
+				st.push(adapter.nextVal(nextValues));
 			values = nextValues;
 		}
 		return values;

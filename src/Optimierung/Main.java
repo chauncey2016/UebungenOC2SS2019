@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
 
-	public static void main(String[] args) throws Exception{
+	public static void main4(String[] args) throws Exception{
 		DockerAdapter.setModus(5);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
@@ -33,8 +33,8 @@ public class Main {
 		//BB5_SimulatedAnnealing_t2_alpha_0.987
 		System.out.println("bye");
 	}
-	public static void main3(String[] args) throws Exception{
-		DockerAdapter.setModus(5);
+	public static void main(String[] args) throws Exception{
+		DockerAdapter.setModus(1);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
 		
@@ -45,19 +45,19 @@ public class Main {
 		
 		System.out.println("Startet");
 		
-		//double stepsSize = 1;
-		double stepsSize = 0.5;
+		double stepsSize = 1;
+		//double stepsSize = 0.5;
 		
 		for(int i=0; i<10; i++){
-			st.currentTest = i;
+			st.setCurrentTest(i);
 			double[] min2 = HillClimbing.randomRestartHillClimbing(dimensions, testMax, stepsSize);
 			double m2 = adapter.nextVal(min2);
 			System.out.println(i+": "+m2+" "+Arrays.toString(min2));
 		}
 		
 		st.print();
-		//BB5_RandomRestartHillClimbing_s_1
-		//BB5_RandomRestartHillClimbing_s_0.5
+		//BB1_RandomRestartHillClimbing_s_1
+		//BB1_RandomRestartHillClimbing_s_0.5
 		System.out.println("bye");
 	}
 	public static void main2(String[] args) throws Exception{

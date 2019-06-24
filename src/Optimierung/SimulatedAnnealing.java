@@ -1,6 +1,8 @@
 package Optimierung;
 
 public class SimulatedAnnealing {
+	static Statistics st = null;
+	
 	SimulatedAnnealing(int dimensions, int iMax, double[] result, boolean useT1) throws Exception{
 		DockerAdapter b = DockerAdapter.instance();
 		
@@ -24,8 +26,12 @@ public class SimulatedAnnealing {
 				o = o_tmp;
 			}
 			
-			if(bo < b.nextVal(o_best))
+			bo = b.nextVal(o);
+			if(bo < b.nextVal(o_best)){
 				o_best = o;
+			}
+			if(st != null)
+				st.push(i, b.nextVal(o_best));
 		}
 		for(int i=0; i<result.length; i++)
 			result[i] = o_best[i];
@@ -58,8 +64,8 @@ public class SimulatedAnnealing {
 		else
 			return t2(a, b);
 	}
-	double eta = 1.0; //iMax to 0
-	double alpha = 0.987643;
+	static double eta = 1.0; //iMax to 0
+	static double alpha = 0.987643;
 	double t1(int iMax, int i){
 		return iMax - eta * i;
 	}

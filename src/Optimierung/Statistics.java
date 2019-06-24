@@ -15,6 +15,14 @@ public class Statistics {
 	public void push(int iteration, double value){
 		values[currentTest][iteration] = value;
 	}
+	int iteration = 0;
+	public void setCurrentTest(int test){
+		currentTest = test;
+		iteration = 0;
+	}
+	public void push(double value){
+		values[currentTest][iteration++] = value;
+	}
 	/**
 	 * @deprecated
 	 * @param test
