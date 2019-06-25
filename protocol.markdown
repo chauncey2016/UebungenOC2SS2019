@@ -14,13 +14,3 @@
 + Victor Gerling: Python-Code, Präsentation
 + Lukas Huhn: Java-Code
 + Qiang Chang: Verbesserung Abgabe
-
-# Protokoll zu Blatt04
-+ Victor Gerling: Aufgabe 03
-+ Lukas Huhn: Aufgabe 02
-+ Qiang Chang: Aufgabe 01
-
-# Protokoll zu Blatt05
-+ Victor Gerling: Code, Präsentation
-+ Lukas Huhn:
-+ Qiang Chang:
