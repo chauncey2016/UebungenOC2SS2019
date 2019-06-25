@@ -29,6 +29,6 @@
 
 
 # Protokoll zu Blatt06
-+ Victor Gerling:
-+ Lukas Huhn:	
-+ Qiang Chang:
++ Victor Gerling: A3.5, A3.6
++ Lukas Huhn: Java-Code, Präsentation
++ Qiang Chang: Plots, Präsentation

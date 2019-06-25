@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.5.13)  25 JUN 2019 21:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.5.13)  25 JUN 2019 22:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1138,14 +1138,14 @@ Overfull \vbox (15.99718pt too high) detected at line 182
  <./img/a5.png>]
 File: img/siegel.png Graphic file (type png)
 <use img/siegel.png>
-Package pdftex.def Info: img/siegel.png  used on input line 195.
+Package pdftex.def Info: img/siegel.png  used on input line 204.
 (pdftex.def)             Requested size: 45.80894pt x 38.05319pt.
 File: img/unilogo.png Graphic file (type png)
 <use img/unilogo.png>
-Package pdftex.def Info: img/unilogo.png  used on input line 195.
+Package pdftex.def Info: img/unilogo.png  used on input line 204.
 (pdftex.def)             Requested size: 66.86414pt x 47.37105pt.
 
-Overfull \hbox (40.42363pt too wide) in paragraph at lines 195--195
+Overfull \hbox (40.42363pt too wide) in paragraph at lines 204--204
 [][][][]  
  []
 
@@ -1154,14 +1154,14 @@ Overfull \hbox (40.42363pt too wide) in paragraph at lines 195--195
 ]
 File: img/siegel.png Graphic file (type png)
 <use img/siegel.png>
-Package pdftex.def Info: img/siegel.png  used on input line 205.
+Package pdftex.def Info: img/siegel.png  used on input line 214.
 (pdftex.def)             Requested size: 45.80894pt x 38.05319pt.
 File: img/unilogo.png Graphic file (type png)
 <use img/unilogo.png>
-Package pdftex.def Info: img/unilogo.png  used on input line 205.
+Package pdftex.def Info: img/unilogo.png  used on input line 214.
 (pdftex.def)             Requested size: 66.86414pt x 47.37105pt.
 
-Overfull \hbox (40.42363pt too wide) in paragraph at lines 205--205
+Overfull \hbox (40.42363pt too wide) in paragraph at lines 214--214
 [][][][]  
  []
 
@@ -1177,19 +1177,19 @@ Overfull \hbox (40.42363pt too wide) in paragraph at lines 205--205
 \tf@snm=\write8
 \openout8 = `slides.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 208.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 208.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 217.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 217.
  (./slides.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 208.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 208.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 217.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 217.
 Package rerunfilecheck Info: File `slides.out' has not changed.
 (rerunfilecheck)             Checksum: AF1245A9BD22F6F39ACEBC8C8F035AFD;135.
  ) 
 Here is how much of TeX's memory you used:
- 17664 strings out of 492701
- 333909 string characters out of 6134504
- 428034 words of memory out of 5000000
- 21081 multiletter control sequences out of 15000+600000
+ 17665 strings out of 492701
+ 333926 string characters out of 6134504
+ 429034 words of memory out of 5000000
+ 21082 multiletter control sequences out of 15000+600000
  10852 words of font info for 40 fonts, out of 8000000 for 9000
  1137 hyphenation exceptions out of 8191
  56i,14n,55p,773b,441s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1201,7 +1201,7 @@ mf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/symbols/msam10.pfb>
-Output written on slides.pdf (11 pages, 314764 bytes).
+Output written on slides.pdf (11 pages, 315416 bytes).
 PDF statistics:
  175 PDF objects out of 1000 (max. 8388607)
  118 compressed objects within 2 object streams
