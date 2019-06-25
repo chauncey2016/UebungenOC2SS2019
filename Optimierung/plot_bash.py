@@ -25,7 +25,7 @@ def decode_bb(bb):
 import numpy as np
 import matplotlib.pyplot as plt
 
-for i in range(1, 6):
+for i in range(1, 2):
     decoded_data = decode_bb(i)
     temp_data = decoded_data[0]
     for i in range(1, 10):
@@ -35,5 +35,27 @@ for i in range(1, 6):
     for i in range(300):
         temp_data[i] /= 10
 
-    plt.plot(temp_data)
-    plt.show()
+    plt.plot(temp_data, label='Blatt05')
+    #plt.show()
+
+import pandas as pd
+
+df = pd.read_csv('output/bb1_sa_05.csv', sep='\t')
+df = df.mean(axis=1)
+plt.plot(df[:300], label='SA-n:0.5')
+
+df = pd.read_csv('output/bb1_sa_97.csv', sep='\t')
+df = df.mean(axis=1)
+plt.plot(df[:300], label='SA-alpha:0.97')
+
+df = pd.read_csv('output/BB1_hc_s_0.5.csv', sep='\t')
+df = df.mean(axis=1)
+plt.plot(df[:300], label='hill_climbing-s:0.5')
+
+df = pd.read_csv('output/BB1_hc_s_1.csv', sep='\t')
+df = df.mean(axis=1)
+plt.plot(df[:300], label='hill_climbing-s:1.0')
+
+plt.legend()
+plt.show()
+    
