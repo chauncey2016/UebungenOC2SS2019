@@ -10,7 +10,7 @@ public class SimpleEncoder extends BinaryEncoder {
     @Override
     public String encode(int[] gene) {
         String output = "";
-        for(var g: gene)
+        for(int g: gene)
             output += Integer.toBinaryString(g);
 
         return output;

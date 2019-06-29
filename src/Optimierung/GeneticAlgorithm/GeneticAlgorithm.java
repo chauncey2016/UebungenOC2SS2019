@@ -15,9 +15,9 @@ public class GeneticAlgorithm {
     public void train(DockerAdapter adapter, int iterations, float threshold){
         this.initPopulation();
         for(int i = 0; i < iterations; i++){
-            var parents = this.selectParents();
-            var children = this.crossover();
-            var mutants = this.mutation(threshold);
+        	String[] parents = this.selectParents();
+        	String[] children = this.crossover();
+        	String[] mutants = this.mutation(threshold);
         }
     }
 
