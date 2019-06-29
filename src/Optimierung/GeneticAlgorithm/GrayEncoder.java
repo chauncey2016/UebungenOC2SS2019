@@ -7,12 +7,12 @@ public class GrayEncoder extends BinaryEncoder {
     }
 
     @Override
-    public String encode(int[] gene) {
+    public String encode(double[] gene) {
         return null;
     }
 
     @Override
-    public int[] decode(String gene) {
-        return new int[0];
+    public double[] decode(String gene) {
+        return null;
     }
 }

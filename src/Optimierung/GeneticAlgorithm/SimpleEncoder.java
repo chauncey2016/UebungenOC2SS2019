@@ -8,31 +8,33 @@ public class SimpleEncoder extends BinaryEncoder {
     }
 
     @Override
-    public String encode(int[] gene) {
+    public String encode(double[] genome) {
         String output = "";
-        for(int g: gene)
-            output += Integer.toBinaryString(g);
+        for(double g: genome){
+            int sampledDouble = (int)((g - this.min) / this.step);
+            String bin = Integer.toBinaryString(sampledDouble);
+            int diffLen = this.genomeLen - bin.length();
+            for(int i = 0; i < diffLen; i++)
+                output += '0';
+            output += bin;
+        }
 
         return output;
     }
 
     @Override
-    public int[] decode(String gene) {
-        int step = this.geneLen / this.tupleSize;
-        int[] output = new int[this.tupleSize];
+    public double[] decode(String genome) {
+        //int step = this.genomeLen / this.tupleSize;
+        int[] decodedGenome = new int[this.tupleSize];
         for(int i = 0; i < this.tupleSize; i++)
-            output[i] = Integer.parseInt(gene.substring(i*step, (i+1)*step), 2);
+            decodedGenome[i] = Integer.parseInt(
+                    genome.substring(i*this.genomeLen, (i+1)*this.genomeLen), 2);
+
+        double[] output = new double[this.tupleSize];
+        for(int i = 0; i < this.tupleSize; i++)
+            output[i] = decodedGenome[i] * this.step + this.min;
 
         return output;
     }
 
-    /*
-    public String random(){
-        int[] output = new int[this.tupleSize];
-        for(int i = 0; i < this.tupleSize; i++)
-            output[i] = (int)((this.min + rand.nextFloat() * (this.max - this.min))/this.step);
-
-        return this.encode(output);
-    }
-    */
 }

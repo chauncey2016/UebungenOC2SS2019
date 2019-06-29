@@ -7,6 +7,13 @@ public class BlackBox {
     private double step;
     private int tupleSize;
 
+    public BlackBox(double min, double max, double step, int tupleSize){
+        this.setMin(min);
+        this.setMax(max);
+        this.setStep(step);
+        this.setTupleSize(tupleSize);
+    }
+
     public double getMin() {
         return min;
     }

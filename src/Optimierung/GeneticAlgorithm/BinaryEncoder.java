@@ -4,7 +4,7 @@ package Optimierung.GeneticAlgorithm;
 public abstract class BinaryEncoder {
 
     protected int tupleSize;
-    protected int geneLen;
+    protected int genomeLen;
     protected double min;
     protected double max;
     protected double step;
@@ -14,9 +14,9 @@ public abstract class BinaryEncoder {
         this.max = bb.getMax();
         this.step = bb.getStep();
         this.tupleSize = bb.getTupleSize();
-        this.geneLen = (int)Math.pow((max-min)/step, tupleSize);
+        this.genomeLen = (int)Math.ceil(Math.log(max-min)/step);
     }
 
-    public abstract String encode(int[] gene);
-    public abstract int[] decode(String gene);
+    public abstract String encode(double[] gene);
+    public abstract double[] decode(String gene);
 }
