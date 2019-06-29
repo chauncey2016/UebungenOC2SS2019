@@ -27,3 +27,4 @@ HELP.md
 
 scripts/__pycache__/
 *.class
+/bin
