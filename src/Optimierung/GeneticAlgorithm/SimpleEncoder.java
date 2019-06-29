@@ -18,13 +18,11 @@ public class SimpleEncoder extends BinaryEncoder {
                 output += '0';
             output += bin;
         }
-
         return output;
     }
 
     @Override
     public double[] decode(String genome) {
-        //int step = this.genomeLen / this.tupleSize;
         int[] decodedGenome = new int[this.tupleSize];
         for(int i = 0; i < this.tupleSize; i++)
             decodedGenome[i] = Integer.parseInt(

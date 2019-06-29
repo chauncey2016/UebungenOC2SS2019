@@ -12,15 +12,15 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws Exception{
-		DockerAdapter.setModus(4);
+		DockerAdapter.setModus(1);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
 
 		for(int i = 0; i < 10; i++){
-			BlackBox bb = new BlackBox(-10, 10, 0.1, dimensions);
-			GeneticAlgorithm ga = new GeneticAlgorithm(100, i, bb);
-			String[] data = ga.train(adapter, 500, 10, 0.05, "simple");
-			Logger.write("output_ga/bb4_" + i + ".csv", data);
+			BlackBox bb = new BlackBox(0, 10, 0.01, dimensions);
+			GeneticAlgorithm ga = new GeneticAlgorithm(1000, i, bb);
+			String[] data = ga.train(adapter, 500, 100, 0.05, "simple");
+			Logger.write("output_ga/bb1_" + i + ".csv", data);
 		}
 
 		System.out.println("bye");

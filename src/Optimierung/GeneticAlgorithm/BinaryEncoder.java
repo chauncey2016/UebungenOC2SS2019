@@ -14,7 +14,7 @@ public abstract class BinaryEncoder {
         this.max = bb.getMax();
         this.step = bb.getStep();
         this.tupleSize = bb.getTupleSize();
-        this.genomeLen = (int)Math.ceil(Math.log(max-min)/step);
+        this.genomeLen = (int)Math.ceil(Math.log((max-min)/step)/Math.log(2));
     }
 
     public abstract String encode(double[] gene);
