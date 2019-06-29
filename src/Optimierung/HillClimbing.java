@@ -38,9 +38,9 @@ public class HillClimbing {
 		
 		for(int i=0; k_found && i<testMax; i++){
 			k_found = false;
-			for(int j=0; j<dimensions; j++){
+			for(int j=0; j<dimensions * 2; j++){
 				tmp_values = values.clone();
-				tmp_values[j] += s;
+				tmp_values[j/2] += j % 2 == 0 ? s : -s;
 				tmp_out = adapter.nextVal(tmp_values);
 				if(tmp_out < localMin){
 					localMin = tmp_out;
@@ -77,9 +77,9 @@ public class HillClimbing {
 		
 		for(int i=0; k_found && i<testMax; i++){
 			k_found = false;
-			for(int j=0; j<dimensions; j++){
+			for(int j=0; j<dimensions * 2; j++){
 				tmp_values = values.clone();
-				tmp_values[j] += s;
+				tmp_values[j/2] += j % 2 == 0 ? s : -s;
 				tmp_out = adapter.nextVal(tmp_values);
 				if(tmp_out < localMin){
 					localMin = tmp_out;

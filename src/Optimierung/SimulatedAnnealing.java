@@ -41,6 +41,7 @@ public class SimulatedAnnealing {
 		double d_v ;
 		for(int i=0; i<o.length; i++){
 			d_v = Math.random()*2*s;
+			d_v = Math.random() < 0.5 ? d_v : -d_v;
 			res[i] = o[i] + d_v;
 		}
 		return res;

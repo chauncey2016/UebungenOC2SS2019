@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class Main {
 
-	public static void main4(String[] args) throws Exception{
+	public static void main(String[] args) throws Exception{
 		DockerAdapter.setModus(5);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
@@ -26,14 +26,14 @@ public class Main {
 			double value = adapter.nextVal(values);
 			System.out.println(i+": "+value+" "+Arrays.toString(values));
 		}
-		st.print();
+		//st.print();
 		//BB5_SimulatedAnnealing_t1_eta_1
 		//BB5_SimulatedAnnealing_t1_eta_0.5
 		//BB5_SimulatedAnnealing_t2_alpha_0.993
 		//BB5_SimulatedAnnealing_t2_alpha_0.987
 		System.out.println("bye");
 	}
-	public static void main(String[] args) throws Exception{
+	public static void main5(String[] args) throws Exception{
 		DockerAdapter.setModus(5);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
@@ -55,7 +55,7 @@ public class Main {
 			System.out.println(i+": "+m2+" "+Arrays.toString(min2));
 		}
 		
-		st.print();
+		//st.print();
 		//BB5_RandomRestartHillClimbing_s_0.5
 		System.out.println("bye");
 	}

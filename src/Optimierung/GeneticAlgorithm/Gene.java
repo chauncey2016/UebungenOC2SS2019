@@ -2,15 +2,18 @@ package Optimierung.GeneticAlgorithm;
 
 public class Gene implements Comparable<Gene> {
 
-    private float[] modelInput;
-    private float modelOutput;
+    private BinaryEncoder encoder;
+    private double[] modelInput;
+    private double modelOutput;
     private String geneSequence;
+    private BlackBox bb;
 
-    private int tupleSize;
-    private float min, max;
-
-    public Gene(BinaryEncoder encoder){
-
+    public Gene(String encodertype, BlackBox bb){
+        this.bb = bb;
+        if(encodertype.equals("simple"))
+            this.encoder = new SimpleEncoder(bb);
+        else if(encodertype.equals("gray"))
+            this.encoder = new GrayEncoder(bb);
     }
 
     public void setRandomGene(){
@@ -26,11 +29,11 @@ public class Gene implements Comparable<Gene> {
         return 0;
     }
 
-    public float getModelOutput() {
+    public double getModelOutput() {
         return modelOutput;
     }
 
-    public void setModelOutput(float modelOutput) {
+    public void setModelOutput(double modelOutput) {
         this.modelOutput = modelOutput;
     }
 
@@ -40,5 +43,9 @@ public class Gene implements Comparable<Gene> {
 
     public void setGeneSequence(String geneSequence) {
         this.geneSequence = geneSequence;
+    }
+
+    public double[] getModelInput() {
+        return modelInput;
     }
 }

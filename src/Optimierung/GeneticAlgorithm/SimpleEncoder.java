@@ -3,14 +3,14 @@ package Optimierung.GeneticAlgorithm;
 
 public class SimpleEncoder extends BinaryEncoder {
 
-    public SimpleEncoder(float min, float max, int tupleSize, float step, int seed){
-        super(min, max, tupleSize, step, seed);
+    public SimpleEncoder(BlackBox bb){
+        super(bb);
     }
 
     @Override
     public String encode(int[] gene) {
         String output = "";
-        for(var g: gene)
+        for(int g: gene)
             output += Integer.toBinaryString(g);
 
         return output;
@@ -26,7 +26,7 @@ public class SimpleEncoder extends BinaryEncoder {
         return output;
     }
 
-    @Override
+    /*
     public String random(){
         int[] output = new int[this.tupleSize];
         for(int i = 0; i < this.tupleSize; i++)
@@ -34,4 +34,5 @@ public class SimpleEncoder extends BinaryEncoder {
 
         return this.encode(output);
     }
+    */
 }

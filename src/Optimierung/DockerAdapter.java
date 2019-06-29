@@ -55,7 +55,7 @@ public class DockerAdapter {
 		//System.out.println(str_in +"=>"+str_out);
 		return Double.parseDouble(str_out);
 	}
-	double nextVal(double[] values){
+	public double nextVal(double[] values){
 		String str_in = "";
 		for(int i=0; i<values.length; i++){
 			str_in += values[i];
