@@ -38,63 +38,116 @@
 \end{frame}
 
 
-\section{Aufgabe 01}
+\section{Aufgabe 02}
 
-\begin{frame}{Attribut City}
+\begin{frame}{2.1 Einfache Binärkodierung}
+Wie werden Lösungen binär kodiert? 
     \begin{itemize}
-    \item Beispiele: 0, 1, 2(Cities sind mit 0 bis n durchnummeriert)
-    \item n
+    \item Anhand des Wertebereichs und der Schrittweite wird ein unsigned integer generiert.
+    \item Dieser wird mittels Integer.toBinaryString(i) (Java Funktion) in einen Binär-String umgewandelt.
+    \item String wird evtl. mit zusäzlichen Nullen aufgefüllt, um gewünschte Stringlänge zu erreichen.
+    \item Beispiel: siehe Code.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Attribut Route}
+\begin{frame}{2.1 Einfache Binärkodierung}
+Wie wird Population initialisiert? 
     \begin{itemize}
-    \item Beispiele: [(0,1),(1,2),(2,3),(3,0)], [(0,2), (2,1), (1,3), (3,0)], [(0,3), (3,1), (1,2), (2,0)]
-    \item (n-1)!
+    \item Jeder Wert des Eingabe-Tupels wird zufällig anhand des Wertebereichs initialisiert.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Attribut Pheromone}
+\begin{frame}{2.1 Einfache Binärkodierung}
+Wie werden Eltern ausgewählt? 
     \begin{itemize}
-    \item Beispiele: 0.000002, 0.0002, 0.0000001
-    \item Kontinierlicher Wertebereich, unendlich $\Rightarrow$ wir quantisieren! Wähle Minimum=0 und Maximum=0.0004 mit Step=1000
-    $\Rightarrow$ 0.0000004 als Quantisierungsschritt
+    \item Sortiere Population anhand des generierten Fitnesswertes.
+    \item Erstelle so eine Rang-basierte Wahrscheinlichkeitsverteilung $\Rightarrow (1 - e^{- rank}) / (size population))$
+    \item Ziehe mittels Roulette-Wheel Algortihmus n Eltern.
+    \item Siehe Code.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{1.3 Routenlängen}
-    \begin{center}
-    \includegraphics[scale=0.2]{Avg_len_per_iter.png}
-    \end{center}
+\begin{frame}{2.1 Einfache Binärkodierung}
+Wie wird Crossover durchgeführt? 
+    \begin{itemize}
+    \item Mittels uniform crossover.
+    \item Entscheide bei jedem Bit zufällig, ob die Eltern ihr Bit vertauschen sollen.
+    \item Siehe Code.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{1.3 Emergenz}
-    \begin{center}
-    \includegraphics[scale=0.2]{Emerg_per_iter.png}
-    \end{center}
+\begin{frame}{2.1 Einfache Binärkodierung}
+Wie wird Mutation durchgeführt? 
+    \begin{itemize}
+    \item Setze Threshold für Mutation (0.05).
+    \item Generiere bei jedem Bit Zufallszahl um zu entscheiden ob es zur Mutation kommt.
+    \item Bitflip wenn Mutation.
+    \item Siehe Code.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{1.3 Emergenz Kiviat-Graph}
-    \begin{center}
-    \includegraphics[scale=0.4]{emerg_spider.png}
-    \end{center}
+\begin{frame}{2.2 Graycode}
+Wie wird Gray-Kodierung durchgeführt? 
+    \begin{itemize}
+    \item Encoding: n xor (n >> 1), z.B.: 2 xor (2 >> 1) $\Rightarrow 3 \Rightarrow (11)_2$
+    \item Decoding: p := n; while(n >>= 1 != 0) do p := p xor n; return p;
+    \item Siehe Code.
+    \end{itemize}
+\end{frame}
+
+
+\section{Aufgabe 03}
+
+\begin{frame}{3 GA mit Fließkommazahlen}
+Implementieren Sie nun einen GA für die Blackboxen, der direkt auf den Fließkommazahlen-Vektoren
+arbeitet! Nutzen Sie dabei ...
+    \begin{itemize}
+    \item Alles gleich wie A2 außer Mutation.
+    \item Für Mutation: ziehe zufällige Zahl zwischen [-step, step] und addiere sie zum jeweiligen Wert hinzu!
+    \end{itemize}
 \end{frame}
 
 \section{Aufgabe 04}
 
-\begin{frame}{Emergenz vorhanden}
+\begin{frame}{4 Auswertung}
+Erwarten Sie, dass der GA mit Fließkommazahlen auf den Blackboxen besser oder schlechter
+funktioniert? Warum?
     \begin{itemize}
-    \item Route: gut, weil sich Ants auf ähnliche Route einigen
-    \item Pheromone: gut, weil sich mit der Zeit Pheromonenstärkste Straße herausbildet
+    \item Erwartung: Nein.
+    \item Das modifizieren der Bits erlaubt eine feingranulare Anpassung der Werte.
+    \item Eventuell langsamer um zu konvergieren, zum Ende hin jedoch potentiell präziser!
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Emergenz nicht vorhanden}
+\begin{frame}{4 Auswertung}
+Entscheiden Sie sich bei jedem Verfahren für eine gute Parametrisierung und geben Sie diese,
+die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert an!
     \begin{itemize}
-    \item City: Eventuell durch die verschiedenen Startstädte, ist jedoch eher weniger interessant
+    \item GA simple: Population: 600-1000, Parents: 40-80, Mutation-Thres: 0.05, step-size: 0.01-5
+    \item GA gray: gleich
+    \item GA float: gleich bis auf Mutation; hier step-size: 0.01-5
     \end{itemize}
 \end{frame}
 
+\begin{frame}{4 Auswertung BB1}
+    \begin{center}
+    \begin{figure}
+    \begin{tabular}{|c|c|c|c|} 
+      \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb1_naive.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_simple.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_gray.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_float.png} \\ \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb1_naive.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_simple.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_gray.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_float.png} \\ \hline
+    \end{tabular}
+    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC}
+    \end{figure}
+    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    \end{center}
+\end{frame}
 
 \end{document}
 % Local Variables:
