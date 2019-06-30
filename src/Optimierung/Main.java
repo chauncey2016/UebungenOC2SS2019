@@ -2,6 +2,7 @@ package Optimierung;
 
 import Optimierung.GeneticAlgorithm.BlackBox;
 import Optimierung.GeneticAlgorithm.GeneticAlgorithm;
+import Optimierung.GeneticAlgorithm.GeneticAlgorithmA3;
 import Optimierung.GeneticAlgorithm.Logger;
 
 import java.io.DataInputStream;
@@ -12,15 +13,15 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) throws Exception{
-		DockerAdapter.setModus(1);
+		DockerAdapter.setModus(5);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
 
 		for(int i = 0; i < 10; i++){
-			BlackBox bb = new BlackBox(0, 10, 0.01, dimensions);
-			GeneticAlgorithm ga = new GeneticAlgorithm(600, i, bb);
-			String[] data = ga.train(adapter, 500, 40, 0.05, "simple");
-			Logger.write("output_ga/bb1_simple_" + i + ".csv", data);
+			BlackBox bb = new BlackBox(-512, 512, 0.5, dimensions);
+			GeneticAlgorithmA3 ga = new GeneticAlgorithmA3(1000, i, bb);
+			String[] data = ga.train(adapter, 500, 80, 0.05, 4);
+			Logger.write("output_ga/bb5_floating_" + i + ".csv", data);
 		}
 
 		System.out.println("bye");
