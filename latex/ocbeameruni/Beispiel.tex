@@ -16,7 +16,7 @@
 
 
 \title{Organic Computing 2}
-\subtitle{Lösungsvorschlag Blatt03}
+\subtitle{Lösungsvorschlag Blatt07}
 \date{\today}
 \author{Lukas Huhn \and Qiang Chang \and Victor Gerling}
 \institute{%
@@ -123,7 +123,7 @@ funktioniert? Warum?
 Entscheiden Sie sich bei jedem Verfahren für eine gute Parametrisierung und geben Sie diese,
 die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert an!
     \begin{itemize}
-    \item GA simple: Population: 600-1000, Parents: 40-80, Mutation-Thres: 0.05, step-size: 0.01-5
+    \item GA simple: Population: 600-1000, Parents: 40-80, Mutation-Thres: 0.05, step-size: 0.01-1
     \item GA gray: gleich
     \item GA float: gleich bis auf Mutation; hier step-size: 0.01-5
     \end{itemize}
@@ -138,15 +138,103 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
     & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_simple.png} 
     & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_gray.png}
     & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_float.png} \\ \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb1_naive.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_simple.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_gray.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_float.png} \\ \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb1_hc.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_hc_sa.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_hc_rs.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb1_sa.png} \\ \hline
     \end{tabular}
-    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC}
+    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
     \end{figure}
     $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
     \end{center}
+\end{frame}
+
+\begin{frame}{4 Auswertung BB2}
+    \begin{center}
+    \begin{figure}
+    \begin{tabular}{|c|c|c|c|} 
+      \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb2_naive.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb2_ga_simple.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb2_ga_gray.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb2_ga_float.png} \\ \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb2_hc.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb2_hc_sa.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb2_hc_rs.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb2_sa.png} \\ \hline
+    \end{tabular}
+    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
+    \end{figure}
+    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    \end{center}
+\end{frame}
+
+\begin{frame}{4 Auswertung BB3}
+    \begin{center}
+    \begin{figure}
+    \begin{tabular}{|c|c|c|c|} 
+      \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb3_naive.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb3_ga_simple.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb3_ga_gray.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb3_ga_float.png} \\ \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb3_hc.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb3_hc_sa.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb3_hc_rs.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb3_sa.png} \\ \hline
+    \end{tabular}
+    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
+    \end{figure}
+    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    \end{center}
+\end{frame}
+
+\begin{frame}{4 Auswertung BB4}
+    \begin{center}
+    \begin{figure}
+    \begin{tabular}{|c|c|c|c|} 
+      \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb4_naive.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb4_ga_simple.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb4_ga_gray.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb4_ga_float.png} \\ \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb4_hc.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb4_hc_sa.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb4_hc_rs.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb4_sa.png} \\ \hline
+    \end{tabular}
+    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
+    \end{figure}
+    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    \end{center}
+\end{frame}
+
+\begin{frame}{4 Auswertung BB5}
+    \begin{center}
+    \begin{figure}
+    \begin{tabular}{|c|c|c|c|} 
+      \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb5_naive.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb5_ga_simple.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb5_ga_gray.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb5_ga_float.png} \\ \hline
+      \includegraphics[width=23mm, height=20mm]{plots/bb5_hc.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb5_hc_sa.png} 
+    & \includegraphics[width=23mm, height=20mm]{plots/bb5_hc_rs.png}
+    & \includegraphics[width=23mm, height=20mm]{plots/bb5_sa.png} \\ \hline
+    \end{tabular}
+    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
+    \end{figure}
+    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    \end{center}
+\end{frame}
+
+\begin{frame}{4 Auswertung}
+Wie könnte man sich vorab für ein Verfahren entscheiden, wenn man nicht die Möglichkeit hat,
+tausende Anfragen an die Blackbox zu stellen?
+    \begin{itemize}
+    \item 
+    \end{itemize}
 \end{frame}
 
 \end{document}
