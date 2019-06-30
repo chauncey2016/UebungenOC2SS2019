@@ -85,6 +85,8 @@ public class BetterStatistics extends Statistics{
 		for(int i=0; i<testMax; i++){
 			line = "";
 			for(int j=0; j<numAlgo; j++){
+				if(out[j][i] == 0)
+					out[j][i] = out[j][i-1];
 				line += out[j][i];
 				if(j+1 < numAlgo)
 					line += "\t";
