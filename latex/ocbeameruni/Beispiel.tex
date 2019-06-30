@@ -61,7 +61,7 @@ Wie wird Population initialisiert?
 Wie werden Eltern ausgewählt? 
     \begin{itemize}
     \item Sortiere Population anhand des generierten Fitnesswertes.
-    \item Erstelle so eine Rang-basierte Wahrscheinlichkeitsverteilung $\Rightarrow (1 - e^{- rank}) / (size population))$
+    \item Erstelle so eine Rang-basierte Wahrscheinlichkeitsverteilung $\Rightarrow (1 - e^{- rank}) / (size population)$
     \item Ziehe mittels Roulette-Wheel Algortihmus n Eltern.
     \item Siehe Code.
     \end{itemize}
@@ -145,7 +145,7 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
     \end{tabular}
     \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
     \end{figure}
-    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    $\Rightarrow$ bestes Verfahren: GA gray mit 0.19!
     \end{center}
 \end{frame}
 
@@ -165,7 +165,7 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
     \end{tabular}
     \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
     \end{figure}
-    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    $\Rightarrow$ bestes Verfahren: GA gray mit -195!
     \end{center}
 \end{frame}
 
@@ -185,7 +185,7 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
     \end{tabular}
     \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
     \end{figure}
-    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    $\Rightarrow$ bestes Verfahren: GA gray mit -106!
     \end{center}
 \end{frame}
 
@@ -205,7 +205,7 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
     \end{tabular}
     \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
     \end{figure}
-    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    $\Rightarrow$ bestes Verfahren: GA gray mit 0!
     \end{center}
 \end{frame}
 
@@ -225,7 +225,7 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
     \end{tabular}
     \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
     \end{figure}
-    $\Rightarrow$ bestes Verfahren: ga-simple mit 100!
+    $\Rightarrow$ bestes Verfahren: GA gray mit -960!
     \end{center}
 \end{frame}
 
@@ -233,7 +233,10 @@ die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert
 Wie könnte man sich vorab für ein Verfahren entscheiden, wenn man nicht die Möglichkeit hat,
 tausende Anfragen an die Blackbox zu stellen?
     \begin{itemize}
-    \item 
+    \item Verfahren wie Genetic Algorithm oder Simulated Annealing erzielen gute Ergebnisse brauchen jedoch lange zum konvergieren.
+    \item Hill Climbing oder auch das Zufalls-Model konvergieren schneller gegen einen guten Wert.
+    \item Zum \textit{probing} könnte es Sinn machen das Zufallsverfahren zu wählen, um sich so ein möglichst breites Bild zu generieren;
+    besser man benutzt ein Verfahren wie HC mit random restart.
     \end{itemize}
 \end{frame}
 

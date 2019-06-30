@@ -32,3 +32,8 @@
 + Victor Gerling: A3.5, A3.6
 + Lukas Huhn: Java-Code, Präsentation
 + Qiang Chang: Plots, Präsentation
+
+# Protokoll zu Blatt07
++ Victor Gerling: A2, Präsentation
++ Lukas Huhn: A1
++ Qiang Chang: A3
