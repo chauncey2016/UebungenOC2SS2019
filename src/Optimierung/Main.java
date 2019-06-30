@@ -18,9 +18,9 @@ public class Main {
 
 		for(int i = 0; i < 10; i++){
 			BlackBox bb = new BlackBox(0, 10, 0.01, dimensions);
-			GeneticAlgorithm ga = new GeneticAlgorithm(1000, i, bb);
-			String[] data = ga.train(adapter, 500, 100, 0.05, "simple");
-			Logger.write("output_ga/bb1_" + i + ".csv", data);
+			GeneticAlgorithm ga = new GeneticAlgorithm(600, i, bb);
+			String[] data = ga.train(adapter, 500, 40, 0.05, "simple");
+			Logger.write("output_ga/bb1_simple_" + i + ".csv", data);
 		}
 
 		System.out.println("bye");

@@ -20,19 +20,24 @@ def create_bb_process(bb):
 
 def search_optimum(proc, gen):
     current = 0.0
+    fitness_history = []
     for i, x in enumerate(gen):
         proc.stdin.write(x)
         proc.stdin.flush()
         output = proc.stdout.readline()
         if i == 0 or float(output) < current: current = float(output)
-        print('{}, {}'.format(i, current))       
-
+        fitness_history.append(current)
+    return fitness_history
 
 def run_naive_optimum(bb, epochs=10):
     for i in range(epochs):
         with create_bb_process(bb) as proc:
-            gen = generate_tuples(bb)
-            search_optimum(proc, gen)
+            gen = generate_tuples(bb, 500, -512, 512)
+            data = search_optimum(proc, gen)
+
+            with open('blatt08_out/bb'+str(bb)+'_'+str(i)+'.csv', 'w') as f:
+                for d in data:
+                    f.write(str(d)+'\n')
 
 
-run_naive_optimum(1)
+run_naive_optimum(5)
