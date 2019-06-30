@@ -31,7 +31,7 @@ public class SimulatedAnnealing {
 				o_best = o;
 			}
 			if(st != null)
-				st.push(i, b.nextVal(o_best));
+				st.push(b.nextVal(o_best));
 		}
 		for(int i=0; i<result.length; i++)
 			result[i] = o_best[i];
@@ -73,6 +73,4 @@ public class SimulatedAnnealing {
 	double t2(int iMax, int i){
 		return iMax * Math.pow(alpha, i);
 	}
-	
-	
 }

@@ -16,6 +16,92 @@ public class Main {
 		DockerAdapter.setModus(5);
 		int dimensions = DockerAdapter.getDimensions();
 		DockerAdapter adapter = DockerAdapter.instance();
+		
+		int testMax = 500;
+		int tries = 10;
+		int numAlgo = 10;
+		
+		BetterStatistics st = new BetterStatistics(numAlgo, tries, testMax);
+		HillClimbing.st = st;
+		SimulatedAnnealing.st = st;
+		
+		System.out.println("Startet");
+		
+		double[] min;
+		
+//		double stepsSize = 1;
+		double stepsSize = 0.5;
+		
+		
+		st.setAlgoName(0, "Hillclimbing step = 1");
+		st.setAlgoName(1, "Hillclimbing step = 0.5");
+		st.setAlgoName(2, "Steepest Ascent HillClimbing step = 1");
+		st.setAlgoName(3, "Steepest Ascent HillClimbing step = 0.5");
+		st.setAlgoName(4, "Random Restart HillClimbing step = 1");
+		st.setAlgoName(5, "Random Restart HillClimbing step = 0.5");
+		
+		st.setAlgoName(6, "SimulatedAnnealing alpha = 0.993 using t1");
+		st.setAlgoName(7, "SimulatedAnnealing alpha = 0.993 using t2");
+		st.setAlgoName(8, "SimulatedAnnealing alpha = 0.987 using t1");
+		st.setAlgoName(9, "SimulatedAnnealing alpha = 0.987 using t2");
+		
+		for(int i=0; i<10; i++){
+			
+			st.setCurrentTest(i);
+			
+			st.setCurrentAlgo(0);
+			stepsSize = 1;
+			min = HillClimbing.EazyHillClimbing(dimensions, testMax, stepsSize);
+			
+			st.setCurrentAlgo(1);
+			stepsSize = 0.5;
+			min = HillClimbing.EazyHillClimbing(dimensions, testMax, stepsSize);
+			
+			st.setCurrentAlgo(2);
+			stepsSize = 1;
+			min = HillClimbing.SteepestAscentHillClimbing(dimensions, testMax, stepsSize);
+			
+			st.setCurrentAlgo(3);
+			stepsSize = 0.5;
+			min = HillClimbing.SteepestAscentHillClimbing(dimensions, testMax, stepsSize);
+			
+			st.setCurrentAlgo(4);
+			stepsSize = 1;
+			min = HillClimbing.randomRestartHillClimbing(dimensions, testMax, stepsSize);
+			
+			st.setCurrentAlgo(5);
+			stepsSize = 0.5;
+			min = HillClimbing.randomRestartHillClimbing(dimensions, testMax, stepsSize);
+			
+			st.setCurrentAlgo(6);
+			SimulatedAnnealing.eta = 1;
+			SimulatedAnnealing.alpha = 0.993;
+			min = new double[dimensions];
+			new SimulatedAnnealing(dimensions, testMax, min, true);
+			
+			st.setCurrentAlgo(7);
+			SimulatedAnnealing.alpha = 0.993;
+			min = new double[dimensions];
+			new SimulatedAnnealing(dimensions, testMax, min, false);
+			
+			st.setCurrentAlgo(8);
+			SimulatedAnnealing.alpha = 0.987;
+			min = new double[dimensions];
+			new SimulatedAnnealing(dimensions, testMax, min, true);
+			
+			st.setCurrentAlgo(9);
+			SimulatedAnnealing.alpha = 0.987;
+			min = new double[dimensions];
+			new SimulatedAnnealing(dimensions, testMax, min, false);
+		}
+		
+		st.print();
+	}
+	
+	public static void main1(String[] args) throws Exception{
+		DockerAdapter.setModus(5);
+		int dimensions = DockerAdapter.getDimensions();
+		DockerAdapter adapter = DockerAdapter.instance();
 
 		for(int i = 0; i < 10; i++){
 			BlackBox bb = new BlackBox(-512, 512, 0.5, dimensions);
