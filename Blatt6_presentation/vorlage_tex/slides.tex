@@ -35,7 +35,7 @@
 %\usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 %\usepackage{mathptmx}
-
+\usepackage{listings}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -69,15 +69,19 @@
   \titlepage
 \end{frame}
 
-\section*{Aufgabe 1}
-\begin{frame}
-  \frametitle{Aufgabe 1}
-  \begin{itemize}
-  		\item Ansteuerung der BlackBox
-  	  \item \url{https://git.rz.uni-augsburg.de/bosserda/oc/blob/master/src/Optimierung/DockerAdapter.java}
-  \end{itemize}
-\end{frame}
 
+\begin{frame}{2.1}
+Implementieren Sie [Q-Learning-Algorithmus mit einer ε-Greedy-Policy] und wenden Sie ihn auf das FrozenLake-v0-Szenario aus dem OpenAI-
+Gym an!
+
+\begin{lstlisting}[language=Python, frame=single]
+#Init
+env = gym.make('FrozenLake-v0')
+newState = env.reset()
+oldState = newState
+\end{lstlisting}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Aufgabe 2, 3}

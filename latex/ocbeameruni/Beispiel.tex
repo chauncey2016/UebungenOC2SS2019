@@ -1,22 +1,13 @@
-\documentclass{ocbeameruni}
 
+
+\documentclass{ocbeameruni}
 
 \setdefaultlanguage[babelshorthands=true]{german}
 
-
-% Nur benötigt für die Beispiel-Listings!
-\usepackage{listings}
-\lstloadlanguages{[LaTeX]TeX}
-\lstset{%
-  basicstyle=\small \ttfamily,
-  breaklines=true,
-}
-
 \newcommand{\R}{\mathbb{R}}
 
-
 \title{Organic Computing 2}
-\subtitle{Lösungsvorschlag Blatt07}
+\subtitle{Lösungsvorschlag Blatt08}
 \date{\today}
 \author{Lukas Huhn \and Qiang Chang \and Victor Gerling}
 \institute{%
@@ -25,6 +16,7 @@
   Lehrstuhl für Organic Computing
 }
 
+\usepackage{listings}
 
 \begin{document}
 
@@ -40,204 +32,107 @@
 
 \section{Aufgabe 02}
 
-\begin{frame}{2.1 Einfache Binärkodierung}
-Wie werden Lösungen binär kodiert? 
+\begin{frame}{2.1}
+Implementieren Sie diesen und wenden Sie ihn auf das FrozenLake-v0-Szenario aus dem OpenAI-
+Gym an!
     \begin{itemize}
-    \item Anhand des Wertebereichs und der Schrittweite wird ein unsigned integer generiert.
-    \item Dieser wird mittels Integer.toBinaryString(i) (Java Funktion) in einen Binär-String umgewandelt.
-    \item String wird evtl. mit zusäzlichen Nullen aufgefüllt, um gewünschte Stringlänge zu erreichen.
-    \item Beispiel: siehe Code.
+    \item siehe Code.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{2.1 Einfache Binärkodierung}
-Wie wird Population initialisiert? 
+\begin{frame}{2.2}
+Finden Sie durch Ausprobieren oder eine kleine Parameterstudie geeignete Werte für die drei
+Parameter ε, γ (Diskontierungsfaktor) und α (Lernrate)!
     \begin{itemize}
-    \item Jeder Wert des Eingabe-Tupels wird zufällig anhand des Wertebereichs initialisiert.
+    \item alpha = 0.1
+    \item gamma = 0.5
+    \item epsilon = 0.09
     \end{itemize}
 \end{frame}
 
-\begin{frame}{2.1 Einfache Binärkodierung}
-Wie werden Eltern ausgewählt? 
-    \begin{itemize}
-    \item Sortiere Population anhand des generierten Fitnesswertes.
-    \item Erstelle so eine Rang-basierte Wahrscheinlichkeitsverteilung $\Rightarrow (1 - e^{- rank}) / (size population)$
-    \item Ziehe mittels Roulette-Wheel Algortihmus n Eltern.
-    \item Siehe Code.
-    \end{itemize}
+\begin{frame}{2.2}
+Zeichnen Sie ein Episode-Return-Diagramm sowie ein Episode-Returndurchschnitt-Diagramm,
+wobei der Durchschnitt in Fenstern jeweils über die 100 Episoden vor der jeweiligen Episode
+gebildet werden soll!
 \end{frame}
 
-\begin{frame}{2.1 Einfache Binärkodierung}
-Wie wird Crossover durchgeführt? 
-    \begin{itemize}
-    \item Mittels uniform crossover.
-    \item Entscheide bei jedem Bit zufällig, ob die Eltern ihr Bit vertauschen sollen.
-    \item Siehe Code.
-    \end{itemize}
+
+\begin{frame}{2.3}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=50mm, height=50mm]{plots/figure_1.png} 
+    \includegraphics[width=50mm, height=50mm]{plots/figure_2.png} 
+\end{figure}
+ 
 \end{frame}
 
-\begin{frame}{2.1 Einfache Binärkodierung}
-Wie wird Mutation durchgeführt? 
-    \begin{itemize}
-    \item Setze Threshold für Mutation (0.05).
-    \item Generiere bei jedem Bit Zufallszahl um zu entscheiden ob es zur Mutation kommt.
-    \item Bitflip wenn Mutation.
-    \item Siehe Code.
-    \end{itemize}
+
+\begin{frame}[2.4]
+Nach wie viel Episoden ist der Lernprozess zufriedenstellend abgeschlossen? Begründen Sie!
+\begin{itemize}
+\item Ein Versuch benötigte 452 Episoden um einen Gewinndurchschnitt von 0.51 zu erzielen.
+\end{itemize}
 \end{frame}
 
-\begin{frame}{2.2 Graycode}
-Wie wird Gray-Kodierung durchgeführt? 
-    \begin{itemize}
-    \item Encoding: n xor (n >> 1), z.B.: 2 xor (2 >> 1) $\Rightarrow 3 \Rightarrow (11)_2$
-    \item Decoding: p := n; while(n >>= 1 != 0) do p := p xor n; return p;
-    \item Siehe Code.
-    \end{itemize}
-\end{frame}
 
+\begin{frame}[2.5]
+Ist Q-Learning gut geeignet für dieses Szenario?
+\begin{itemize}
+\item Ja, da es einen diskreten Zustand- und Aktionsraum gibt, mit nur 16 möglichen Zuständen und 4 möglichen Aktionen.
+Somit benötigen wir nur 16*4 = 64 q-Werte.
+\end{itemize}
+\end{frame}
 
 \section{Aufgabe 03}
 
-\begin{frame}{3 GA mit Fließkommazahlen}
-Implementieren Sie nun einen GA für die Blackboxen, der direkt auf den Fließkommazahlen-Vektoren
-arbeitet! Nutzen Sie dabei ...
-    \begin{itemize}
-    \item Alles gleich wie A2 außer Mutation.
-    \item Für Mutation: ziehe zufällige Zahl zwischen [-step, step] und addiere sie zum jeweiligen Wert hinzu!
-    \end{itemize}
+\begin{frame}[3.1]
+Kann Ihre Q-Learning-Implementierung auch das CartPole-v1-Problem lösen? Wenn nicht:
+Warum nicht?
+
+Problem bei CarPole reicht der observation space
+von
+[-4.8000002e+00 -3.4028235e+38 -4.1887903e-01 -3.4028235e+38]
+bis
+[4.8000002e+00 3.4028235e+38 4.1887903e-01 3.4028235e+38]
 \end{frame}
 
-\section{Aufgabe 04}
+\begin{frame}[3.1]
+1. Problem: Ist vier-dimensional. Lässt sich prinzipiell auf eine Array-Dimension reduzieren:
+z.B. bei 8 Werten pro Richtung ergeben sich 8^4 states
 
-\begin{frame}{4 Auswertung}
-Erwarten Sie, dass der GA mit Fließkommazahlen auf den Blackboxen besser oder schlechter
-funktioniert? Warum?
-    \begin{itemize}
-    \item Erwartung: Nein.
-    \item Das modifizieren der Bits erlaubt eine feingranulare Anpassung der Werte.
-    \item Eventuell langsamer um zu konvergieren, zum Ende hin jedoch potentiell präziser!
-    \end{itemize}
+2. Problem Werte sind nicht quantisiert. Es liegen zwischen -4 und 4 unendlich viele reale Werte. 
+Lässt sich in Stufen aufteilen
+
+    def quantize(val, min, max, levels):
+      val = math.floor((val - min) * levels / (max - min))
+      return val
 \end{frame}
 
-\begin{frame}{4 Auswertung}
-Entscheiden Sie sich bei jedem Verfahren für eine gute Parametrisierung und geben Sie diese,
-die Stelle des auf diese Weise beim Testen gefundenen Optimums sowie dessen Wert an!
-    \begin{itemize}
-    \item GA simple: Population: 600-1000, Parents: 40-80, Mutation-Thres: 0.05, step-size: 0.01-1
-    \item GA gray: gleich
-    \item GA float: gleich bis auf Mutation; hier step-size: 0.01-5
-    \end{itemize}
+
+\begin{frame}[3.1]
+3. Problem zweite und vierte Spalte reichen von -unendlich bis +unendlich, während beim Testen 
+nur Werte nah an der null beobachtet werden konnten. Damit werden beide bei der Quantisierung
+immer auf 0 abgebildetet also nicht vom Agenten wahrgenommen.
 \end{frame}
 
-\begin{frame}{4 Auswertung BB1}
-    \begin{center}
-    \begin{figure}
-    \begin{tabular}{|c|c|c|c|} 
-      \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb1_naive.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_simple.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_gray.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_ga_float.png} \\ \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb1_hc.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_hc_sa.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_hc_rs.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb1_sa.png} \\ \hline
-    \end{tabular}
-    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
-    \end{figure}
-    $\Rightarrow$ bestes Verfahren: GA gray mit 0.19!
-    \end{center}
+
+\begin{frame}[3.2]
+Wie könnte man Ihre Implementierung anpassen, um doch eine Lösung zu finden?
+
+Für die Anpassung muss die Größe der q-Tabelle die Größe des quantisierten state-spaces haben,
+in unserem Fall $(8^4)*2$, wobei 2 die Größe des Actionspaces bei Cartpole ist ({0, 1}).
 \end{frame}
 
-\begin{frame}{4 Auswertung BB2}
-    \begin{center}
-    \begin{figure}
-    \begin{tabular}{|c|c|c|c|} 
-      \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb2_naive.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb2_ga_simple.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb2_ga_gray.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb2_ga_float.png} \\ \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb2_hc.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb2_hc_sa.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb2_hc_rs.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb2_sa.png} \\ \hline
-    \end{tabular}
-    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
-    \end{figure}
-    $\Rightarrow$ bestes Verfahren: GA gray mit -195!
-    \end{center}
-\end{frame}
+\begin{frame}[3.3]
+Setzen Sie Ihre Idee um. Funktioniert sie? Weshalb (nicht)? Wie lange dauert der Lernprozess?
 
-\begin{frame}{4 Auswertung BB3}
-    \begin{center}
-    \begin{figure}
-    \begin{tabular}{|c|c|c|c|} 
-      \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb3_naive.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb3_ga_simple.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb3_ga_gray.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb3_ga_float.png} \\ \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb3_hc.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb3_hc_sa.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb3_hc_rs.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb3_sa.png} \\ \hline
-    \end{tabular}
-    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
-    \end{figure}
-    $\Rightarrow$ bestes Verfahren: GA gray mit -106!
-    \end{center}
-\end{frame}
+Es wurde mit 4096 * 4 * 10 Iterationen Gelernte, sodass jedes gültige 
+State-Action-Paar durchschnittlich 10 mal besucht werden konnte. Das Ergebnis ist ernüchternt, der Agent
+hält das Gleichgewicht keine Sekunde.
 
-\begin{frame}{4 Auswertung BB4}
-    \begin{center}
-    \begin{figure}
-    \begin{tabular}{|c|c|c|c|} 
-      \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb4_naive.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb4_ga_simple.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb4_ga_gray.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb4_ga_float.png} \\ \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb4_hc.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb4_hc_sa.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb4_hc_rs.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb4_sa.png} \\ \hline
-    \end{tabular}
-    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
-    \end{figure}
-    $\Rightarrow$ bestes Verfahren: GA gray mit 0!
-    \end{center}
-\end{frame}
+Die liegt vermutlich an den nicht-wahrgenommen Zustands-Attributen.
 
-\begin{frame}{4 Auswertung BB5}
-    \begin{center}
-    \begin{figure}
-    \begin{tabular}{|c|c|c|c|} 
-      \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb5_naive.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb5_ga_simple.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb5_ga_gray.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb5_ga_float.png} \\ \hline
-      \includegraphics[width=23mm, height=20mm]{plots/bb5_hc.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb5_hc_sa.png} 
-    & \includegraphics[width=23mm, height=20mm]{plots/bb5_hc_rs.png}
-    & \includegraphics[width=23mm, height=20mm]{plots/bb5_sa.png} \\ \hline
-    \end{tabular}
-    \caption{Oben: Naives Verfahren, GA simple, GA gray, GA float \hspace{\textwidth}Unten: HC, HC steepest, HC random restart, simulated annealing}
-    \end{figure}
-    $\Rightarrow$ bestes Verfahren: GA gray mit -960!
-    \end{center}
-\end{frame}
-
-\begin{frame}{4 Auswertung}
-Wie könnte man sich vorab für ein Verfahren entscheiden, wenn man nicht die Möglichkeit hat,
-tausende Anfragen an die Blackbox zu stellen?
-    \begin{itemize}
-    \item Verfahren wie Genetic Algorithm oder Simulated Annealing erzielen gute Ergebnisse brauchen jedoch lange zum konvergieren.
-    \item Hill Climbing oder auch das Zufalls-Model konvergieren schneller gegen einen guten Wert.
-    \item Zum \textit{probing} könnte es Sinn machen das Zufallsverfahren zu wählen, um sich so ein möglichst breites Bild zu generieren;
-    besser man benutzt ein Verfahren wie HC mit random restart.
-    \end{itemize}
+Vielleicht kann wäre auch eine andere Form der Generalisierung für die reelwertigen Attribute günstiger.
 \end{frame}
 
 \end{document}

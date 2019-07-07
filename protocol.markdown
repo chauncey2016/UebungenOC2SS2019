@@ -37,3 +37,8 @@
 + Victor Gerling: A2, Präsentation
 + Lukas Huhn: A1
 + Qiang Chang: A3
+
+# Protokoll zu Blatt08
++ Victor Gerling: 
++ Lukas Huhn: Code
++ Qiang Chang: 
