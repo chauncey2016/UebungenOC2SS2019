@@ -1,0 +1,165 @@
+
+######  #####  #####
+#    #  #          #
+#    #  #      #####
+#    #  #      #
+######  #####  #####
+
+A2.1 Implementieren Sie [Q-Learning-Algorithmus mit einer ε-Greedy-Policy] und wenden Sie ihn auf das FrozenLake-v0-Szenario aus dem OpenAI-
+Gym an!
+
+Lösungsvorschlag:
+
+Folie 1 
+
+#Init
+env = gym.make('FrozenLake-v0')
+newState = env.reset()
+oldState = newState
+
+Folie 2
+
+#Q-Learning Math
+def bestAction(state):
+    maxAction = 0
+    for x in range(1, 16):
+        if q[index*16 + x] > q[index*16 + maxAction]:
+            maxAction = x
+    return maxAction
+
+def updateQ(state1, state2, action, reward):
+    index1 = state1 * 16 + action
+    index2 = state2 * 16 + action
+    promise = q[ stateToIndex(state2) * 16 + bestAction(state2) ]
+    q[index1] += alpha * (reward + gamma * promise - q[index1])
+
+Folie 3
+#Learning
+for x in range(100000):
+    action = env.action_space.sample()
+    if random.random() > epsilon:
+        action = bestAction(newState)
+    newState, reward, done, info = env.step(action)
+    if done:
+        if newState == 15:
+            reward = 1
+        else:
+            reward = -1
+        episodes = episodes + 1
+        updateQ(oldState, newState, action, reward)
+        newState = env.reset()
+        oldState = newState
+    else:
+        updateQ(oldState, newState, action, reward)
+        oldState = newState
+
+
+Folie 4
+
+FrozenLake-v0 Spielfeld:
+
+Start  Frozen Frozen Frozen
+Frozen Hole   Frozen Hole
+Frozen Frozen Frozen Hole
+Hole   Frozen Frozen Goal
+
+Gelernte Strategy nach 100 Episoden:
+
+up,    up,    up,   left, 
+leftt, right, left,   up, 
+down,  left,  left, left, 
+right, up,    left,
+
+A2.2 Finden Sie durch Ausprobieren oder eine kleine Parameterstudie geeignete Werte für die drei
+Parameter ε, γ (Diskontierungsfaktor) und α (Lernrate)!
+
+Lösungsvorschlag:
+
+alpha = 0.1
+gamma = 0.5
+epsilon = 0.09
+
+A2.3 Zeichnen Sie ein Episode-Return-Diagramm sowie ein Episode-Returndurchschnitt-Diagramm,
+wobei der Durchschnitt in Fenstern jeweils über die 100 Episoden vor der jeweiligen Episode
+gebildet werden soll!
+
+figure_1.png zeigt über 100 Episoden wie oft der Agent das Ziel erreicht bzw in ein Loch gefallen ist.
+figure_2.png zeigt die Länge der dazugehörigen Episoden
+
+figure_3_AverageWinsInHundred.png
+figure_4_AverageWinsInHundred_Of_Best.png
+
+Die beiden Abbildunge zeigen die Gewünschte durchschnittsmessung: 
+	
+	if length > episodes:
+		return wins / (episodes+1)
+	oldWins = t_2[episodes - length]
+	return (wins - oldWins) / length
+
+Ergebnisse schwanken stark, daher wurde bei einer Rate von 0.5 abgebrochen um eine gute Q-Tabelle zu erreichen.
+
+A2.4. Nach wie viel Episoden ist der Lernprozess zufriedenstellend abgeschlossen? Begründen Sie!
+
+Ein Versuch benötigte 452 Episoden um einen Gewinndurchschnitt von 0.51 zu erzielen.
+
+Q-Tabelle
+0.000324, -0.001220, -0.002421, -0.002460, -0.274994, -0.208630, -0.261257, -0.012533, -0.094945, -0.082076, -0.050129, -0.105856, -0.443587, -0.188713, -0.252584, -0.020364, 0.001534, -0.146907, -0.254789, -0.319871, 0.000000, 0.000000, 0.000000, 0.000000, -0.313236, -0.586591, -0.568124, -0.580088, 0.000000, 0.000000, 0.000000, 0.000000, -0.181367, -0.351464, -0.191998, 0.006397, -0.270499, 0.027393, -0.211093, -0.349774, 0.047404, -0.227639, -0.122402, -0.219971, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, -0.398277, -0.068128, 0.154183, -0.065827, 0.065547, 0.266835, 0.409036, 0.225885, 0.000000, 0.000000, 0.000000, 0.000000, 
+
+=
+
+lt, up, rt, up, 
+lt, lt, lt, lt, 
+up, dn, lt, lt, 
+lt, rt, rt, lt, 
+
+
+A2.5. Ist Q-Learning gut geeignet für dieses Szenario?
+
+Ja, da es einen diskreten Zustand- und Aktionsraum gibt, mit nur 16 möglichen Zuständen und 4 möglichen Aktionen.
+Somit benötigen wir nur 16*4 = 64 q-Werte.
+
+A3.1 Kann Ihre Q-Learning-Implementierung auch das CartPole-v1-Problem lösen? Wenn nicht:
+Warum nicht?
+
+Problem bei CarPole reicht der observation space
+von
+[-4.8000002e+00 -3.4028235e+38 -4.1887903e-01 -3.4028235e+38]
+bis
+[4.8000002e+00 3.4028235e+38 4.1887903e-01 3.4028235e+38]
+
+1. Problem: Ist vier-dimensional. Lässt sich prinzipiell auf eine Array-Dimension reduzieren:
+z.B. bei 8 Werten pro Richtung ergeben sich 8^4 states
+
+2. Problem Werte sind nicht quantisiert. Es liegen zwischen -4 und 4 unendlich viele reale Werte. 
+Lässt sich in Stufen aufteilen
+
+    def quantize(val, min, max, levels):
+      val = math.floor((val - min) * levels / (max - min))
+      return val
+
+3. Problem zweite und vierte Spalte reichen von -unendlich bis +unendlich, während beim Testen 
+nur Werte nah an der null beobachtet werden konnten. Damit werden beide bei der Quantisierung
+immer auf 0 abgebildetet also nicht vom Agenten wahrgenommen.
+
+A3.2 Wie könnte man Ihre Implementierung anpassen, um doch eine Lösung zu finden?
+
+Für die Anpassung muss die Größe der q-Tabelle die Größe des quantisierten state-spaces haben,
+in unserem Fall (8^4)*2, wobei 2 die Größe des Actionspaces bei Cartpole ist ({0, 1}).
+
+Um von einem State-Action-Paar auf seinen q-Index abzubilden wurde weiter abstrahiert:
+
+def stateToIndex(state):
+    index = 0
+    for x in range(len(state)):
+        index += pow(levels, x) * quantize(state[x], min[x], max[x], levels)
+    return index
+
+A3.3 Setzen Sie Ihre Idee um. Funktioniert sie? Weshalb (nicht)? Wie lange dauert der Lernprozess?
+
+Es wurde mit 4096 * 4 * 10 Iterationen Gelernte, sodass jedes gültige 
+State-Action-Paar durchschnittlich 10 mal besucht werden konnte. Das Ergebnis ist ernüchternt, der Agent
+hält das Gleichgewicht keine Sekunde.
+
+Die liegt vermutlich an den nicht-wahrgenommen Zustands-Attributen.
+
+Vielleicht kann wäre auch eine andere Form der Generalisierung für die reelwertigen Attribute günstiger.
