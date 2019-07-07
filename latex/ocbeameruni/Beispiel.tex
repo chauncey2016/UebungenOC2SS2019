@@ -17,6 +17,10 @@
 }
 
 \usepackage{listings}
+\usepackage{mathtools}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 \begin{document}
 
@@ -63,9 +67,18 @@ gebildet werden soll!
     \includegraphics[width=50mm, height=50mm]{plots/figure_1.png} 
     \includegraphics[width=50mm, height=50mm]{plots/figure_2.png} 
 \end{figure}
+Links zeigt über 100 Episoden wie oft der Agent das Ziel erreicht bzw in ein Loch gefallen ist. Rechts zeigt die Länge der dazugehörigen Episoden
  
 \end{frame}
 
+\begin{frame}{2.3}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=50mm, height=50mm]{plots/figure_3.png} 
+    \includegraphics[width=50mm, height=50mm]{plots/figure_4.png} 
+\end{figure}
+Links AverageWinsInHundred. Rechts AverageWinsInHundred of best
+\end{frame}
 
 \begin{frame}[2.4]
 Nach wie viel Episoden ist der Lernprozess zufriedenstellend abgeschlossen? Begründen Sie!
@@ -102,10 +115,7 @@ z.B. bei 8 Werten pro Richtung ergeben sich 8^4 states
 
 2. Problem Werte sind nicht quantisiert. Es liegen zwischen -4 und 4 unendlich viele reale Werte. 
 Lässt sich in Stufen aufteilen
-
-    def quantize(val, min, max, levels):
-      val = math.floor((val - min) * levels / (max - min))
-      return val
+\[val = \floor*{((val - min) * levels / (max - min))}\]
 \end{frame}
 
 
