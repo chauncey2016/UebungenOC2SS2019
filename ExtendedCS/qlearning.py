@@ -2,17 +2,16 @@ import gym
 import numpy as np
 import random
 from lcs_table import LCSTable
-from ga import GA
 
 
 class QLearning():
-    def __init__(self, env, params, alpha=0.15, gamma=0.99, epsilon=0.05, population=100):
+    def __init__(self, env, params, alpha=0.15, gamma=0.99, 
+                 epsilon=0.05, population=100):
         self.env = gym.make(env)
         self.table = LCSTable(env, self.env.action_space.n, params)
         self.alpha = alpha
         self.gamma = gamma
         self.epsilon = epsilon
-        self.ga = GA(population)
 
 
     def exploration(self, A_set, tau=0.1):
@@ -52,7 +51,7 @@ class QLearning():
         reward_per_episode = []
         for episode in range(total_episodes):
             state = self.env.reset()
-            r, t, g = 0, 0, 1
+            r, t, g = 0, 0, 0
 
             while t < max_steps:
                 #self.env.render()
@@ -65,7 +64,7 @@ class QLearning():
                 t += 1
                 g = (g + 1) % genetic_step
                 if g == 0:
-                    self.ga.start_ga()
+                    self.table.start_ga(state, action)
                 if done:
                     reward_per_episode.append(r)
                     break

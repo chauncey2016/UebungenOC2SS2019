@@ -10,7 +10,7 @@ if __name__ == "__main__":
     }
 
     q = QLearning('FrozenLake-v0', params)
-    reward_per_episode = q.learn(50000)
+    reward_per_episode = q.learn(4000)
 
     final_out = []
     for i in range(0, len(reward_per_episode), 100):
