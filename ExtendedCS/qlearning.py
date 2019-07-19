@@ -54,7 +54,7 @@ class QLearning():
             r, t, g = 0, 0, 0
 
             while t < max_steps:
-                #self.env.render()
+                self.env.render()
                 action_set = self.table.get_action_set(state)
                 action = self.choose_action(action_set)  
                 state2, reward, done, _ = self.env.step(action)  
@@ -66,6 +66,7 @@ class QLearning():
                 if g == 0:
                     self.table.start_ga(state, action)
                 if done:
+                    print('reset', r, t, state)
                     reward_per_episode.append(r)
                     break
 
