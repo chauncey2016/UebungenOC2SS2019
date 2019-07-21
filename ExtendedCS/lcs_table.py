@@ -26,6 +26,7 @@ class LCSTable():
 
     def get_action_set(self, s):
         M_set, hits = self.lookup(s)
+        #print(M_set)
         if hits == 0:
             self.cover(s)
             M_set, _ = self.lookup(s)
@@ -55,7 +56,7 @@ class LCSTable():
         return M_set, hits
 
 
-    def cover(self, s, wildcard_th=0.1, init_value=0.5):
+    def cover(self, s, wildcard_th=0.0, init_value=0.5):
         """
         create new rules if non exisiting
         """

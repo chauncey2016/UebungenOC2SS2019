@@ -6,7 +6,7 @@ from lcs_table import LCSTable
 
 class QLearning():
     def __init__(self, env, params, alpha=0.15, gamma=0.99, 
-                 epsilon=0.05, population=100):
+                 epsilon=0.1, population=100):
         self.env = gym.make(env)
         self.table = LCSTable(env, self.env.action_space.n, params)
         self.alpha = alpha
@@ -14,7 +14,7 @@ class QLearning():
         self.epsilon = epsilon
 
 
-    def exploration(self, A_set, tau=0.1):
+    def exploration(self, A_set, tau=5.0):
         div_func = np.vectorize(lambda x: x / tau)
         temp_actions = div_func(A_set)
         temp_actions = np.exp(temp_actions)
@@ -22,6 +22,7 @@ class QLearning():
         norm_actions = norm_func(temp_actions, np.sum(temp_actions))
         q = random.uniform(0, 1)
         sum = 0
+        #print('softmax', norm_actions)
         for i in range(norm_actions.size):
             sum += norm_actions[i]
             if q <= sum: return i
@@ -44,20 +45,32 @@ class QLearning():
         as2 = self.table.get_action_set(state2)
         target = reward + self.gamma * np.max(as2)
         delta = self.alpha * (target - predict)
+        #print(target, predict)
         self.table.update_table_entries(state1, action, delta)
 
 
     def learn(self, total_episodes=20000, max_steps=100, genetic_step=50):
         reward_per_episode = []
+        decay = 0
         for episode in range(total_episodes):
             state = self.env.reset()
             r, t, g = 0, 0, 0
+
+            #decay += 1
+            #if decay % 30 == 0:
+            #    self.epsilon *= 0.50
+            #    self.epsilon = max(0.005, self.epsilon)
+
+
 
             while t < max_steps:
                 self.env.render()
                 action_set = self.table.get_action_set(state)
                 action = self.choose_action(action_set)  
                 state2, reward, done, _ = self.env.step(action)  
+
+                #reward = reward if not done else -reward
+
                 self.update_table(action_set, state, state2, reward, action)
                 state = state2
                 r += reward
@@ -66,7 +79,7 @@ class QLearning():
                 if g == 0:
                     self.table.start_ga(state, action)
                 if done:
-                    print('reset', r, t, state)
+                    #print('reset', t, state)
                     reward_per_episode.append(r)
                     break
 
