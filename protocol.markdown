@@ -42,3 +42,8 @@
 + Victor Gerling: 
 + Lukas Huhn: Code
 + Qiang Chang: 
+
+# Protokoll zu Blatt09
++ Victor Gerling: Code, Präsentation
++ Lukas Huhn:
++ Qiang Chang: 
