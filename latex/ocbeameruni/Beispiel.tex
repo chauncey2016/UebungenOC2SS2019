@@ -69,13 +69,23 @@ Zeichnen Sie ein Episode-Returndurchschnitt-Diagramm zu FrozenLake-v0.
 \end{figure}
 \end{frame}
 
-\begin{frame}{1.3}
+\begin{frame}{1.4}
 Zeichnen Sie ein Episode-Returndurchschnitt-Diagramm zu CartPole-v1.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=100mm, height=60mm]{plots/cartpole.png} 
+    \includegraphics[width=100mm, height=60mm]{plots/cartpole_1.png} 
 \end{figure}
 \end{frame}
+
+\begin{frame}{1.5}
+Nach wie viel Episoden ist der Lernprozess zufriedenstellend abgeschlossen? Begründen Sie!
+    \begin{itemize}
+    \item Frozenlake: Bei ca. 1000, hier wird jedoch kaum generalisiert, da es ohnehin nur 16 Zustände gibt.
+    \item Cartpole: Hier konnnte keine zufriedenstellende Lösung gefunden werden (evtl. falsche Parameter + ECS Lookup ist zu ineffizient)
+    \end{itemize}
+\end{frame}
+
+
 
 \end{document}
 % Local Variables:

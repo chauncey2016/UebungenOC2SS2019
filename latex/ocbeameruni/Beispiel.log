@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2019.5.13)  21 JUL 2019 22:41
+This is XeTeX, Version 3.14159265-2.6-0.99999 (TeX Live 2018) (preloaded format=xelatex 2019.5.13)  22 JUL 2019 00:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1901,10 +1901,26 @@ File: plots/frozen.png Graphic file (type bmp)
 File: Logo.pdf Graphic file (type pdf)
 <use Logo.pdf>
 
-Overfull \vbox (11.30464pt too high) detected at line 71
+Overfull \vbox (11.30464pt too high) detected at line 70
  []
 
 [6
+
+]
+File: plots/cartpole_1.png Graphic file (type bmp)
+<plots/cartpole_1.png>
+File: Logo.pdf Graphic file (type pdf)
+<use Logo.pdf>
+
+Overfull \vbox (11.30464pt too high) detected at line 78
+ []
+
+[7
+
+]
+File: Logo.pdf Graphic file (type pdf)
+<use Logo.pdf>
+ [8
 
 ]
 \tf@nav=\write8
@@ -1916,11 +1932,11 @@ Overfull \vbox (11.30464pt too high) detected at line 71
 \tf@snm=\write10
 \openout10 = `Beispiel.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 73.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 73.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
  (./Beispiel.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 73.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 73.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 90.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
 Package rerunfilecheck Info: File `Beispiel.out' has not changed.
 (rerunfilecheck)             Checksum: 0FB71ED7AEF0FA6CD8FEE38A308F07FB.
 Package logreq Info: Writing requests to 'Beispiel.run.xml'.
@@ -1928,12 +1944,12 @@ Package logreq Info: Writing requests to 'Beispiel.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44241 strings out of 493041
- 872119 string characters out of 6138794
- 1351029 words of memory out of 5000000
- 47563 multiletter control sequences out of 15000+600000
+ 44249 strings out of 493041
+ 872238 string characters out of 6138794
+ 1351027 words of memory out of 5000000
+ 47570 multiletter control sequences out of 15000+600000
  537607 words of font info for 75 fonts, out of 8000000 for 9000
  1330 hyphenation exceptions out of 8191
  79i,13n,119p,1804b,3584s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Beispiel.pdf (6 pages).
+Output written on Beispiel.pdf (8 pages).
