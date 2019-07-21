@@ -67,5 +67,5 @@ class CartPoleGenome():
                 break
             comp += pvel_step
 
-        return genome_pos + genome_cvel + genome_angle + genome_pvel
-        #return genome_cvel + genome_angle + genome_pvel
+        #return genome_pos + genome_cvel + genome_angle + genome_pvel
+        return genome_cvel + genome_angle + genome_pvel

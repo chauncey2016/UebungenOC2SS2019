@@ -56,10 +56,11 @@ class QLearning():
             state = self.env.reset()
             r, t, g = 0, 0, 0
 
-            #decay += 1
-            #if decay % 30 == 0:
-            #    self.epsilon *= 0.50
-            #    self.epsilon = max(0.005, self.epsilon)
+            if self.env.unwrapped.spec.id == 'CartPole-v1':
+                decay += 1
+                if decay % 50 == 0:
+                    self.epsilon *= 0.50
+                    self.epsilon = max(0.005, self.epsilon)
 
 
 
@@ -69,7 +70,8 @@ class QLearning():
                 action = self.choose_action(action_set)  
                 state2, reward, done, _ = self.env.step(action)  
 
-                #reward = reward if not done else -reward
+                if self.env.unwrapped.spec.id == 'CartPole-v1':
+                    reward = reward if not done else -reward
 
                 self.update_table(action_set, state, state2, reward, action)
                 state = state2
@@ -79,7 +81,7 @@ class QLearning():
                 if g == 0:
                     self.table.start_ga(state, action)
                 if done:
-                    #print('reset', t, state)
+                    print('reset', episode, t, state)
                     reward_per_episode.append(r)
                     break
 
