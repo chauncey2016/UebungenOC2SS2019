@@ -56,7 +56,7 @@ class LCSTable():
         return M_set, hits
 
 
-    def cover(self, s, wildcard_th=0.0, init_value=0.5):
+    def cover(self, s, wildcard_th=0.2, init_value=0.5):
         """
         create new rules if non exisiting
         """

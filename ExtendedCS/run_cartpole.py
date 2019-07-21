@@ -13,7 +13,7 @@ if __name__ == "__main__":
         'cvel': {
             'min': -5.0,
             'max': 5.0,
-            'step': 0.5
+            'step': 0.05
         },
         'angle': {
             'min': -0.42,   
@@ -23,7 +23,7 @@ if __name__ == "__main__":
         'pvel': {
             'min': -5.0,
             'max': 5.0,
-            'step': 0.5
+            'step': 0.01
         }
     }
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     pr = cProfile.Profile()
     pr.enable()
-    reward_per_episode = q.learn(100, 200)
+    reward_per_episode = q.learn(1200, 200)
     pr.disable()
     s = io.StringIO()
     sortby = 'cumulative'
