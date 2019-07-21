@@ -1,5 +1,6 @@
 from qlearning import QLearning
 import matplotlib.pyplot as plt
+import cProfile, pstats, io
 
 
 if __name__ == "__main__":
@@ -7,12 +8,12 @@ if __name__ == "__main__":
         'pos': {
             'min': -2.4,
             'max': 2.4,
-            'step': 0.001
+            'step': 0.2
         },
         'cvel': {
-            'min': -0.5,
-            'max': 0.5,
-            'step': 0.001
+            'min': -5.0,
+            'max': 5.0,
+            'step': 0.5
         },
         'angle': {
             'min': -0.42,   
@@ -20,14 +21,24 @@ if __name__ == "__main__":
             'step': 0.001
         },
         'pvel': {
-            'min': -0.5,
-            'max': 0.5,
-            'step': 0.001
+            'min': -5.0,
+            'max': 5.0,
+            'step': 0.5
         }
     }
 
-    q = QLearning('CartPole-v1', params)
-    reward_per_episode = q.learn(50000, 200)
+    q = QLearning('CartPole-v1', params, alpha=0.001, epsilon=1.0)
+
+
+    pr = cProfile.Profile()
+    pr.enable()
+    reward_per_episode = q.learn(100, 200)
+    pr.disable()
+    s = io.StringIO()
+    sortby = 'cumulative'
+    ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    ps.print_stats()
+    print(s.getvalue())
 
     final_out = []
     for i in range(0, len(reward_per_episode), 100):
